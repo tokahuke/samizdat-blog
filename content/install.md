@@ -31,7 +31,7 @@ toc = true
   <p>To install Samizdat Node (and the Samizdat CLI) in your preferred linux distribution, you can use our one-line installation script by copying and pasting the following code in your command line:</p>
 
 <pre>
-curl https://proxy.hubfederation.com/_series/alsdjasldkajsldkasjlda/install-latest.sh | sh
+curl -Ls https://proxy.hubfederation.com/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh
 </pre>
 </div>
 
@@ -64,7 +64,7 @@ If you want to work for the cause, welcome aboard! To serve a Samizdat Hub, you 
 <p>If you have checked all the boxes, just run the following code (as root!):</p>
 
 <pre>
-curl https://proxy.hubfederation.com/_series/asaidfhodishodifhsodfis/hub-install-latest.sh | sh
+curl https://proxy.hubfederation.com/_series/{{< samizdat_public_key >}}/hub-install-latest.sh | sudo sh
 </pre>
 
 And that is it! It should be up and running. You can learn how to maintain your hub <a href="#">in the documentation</a>.

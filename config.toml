@@ -15,16 +15,16 @@ Paginate = 4
 [[menu.main]]
     name = "Install"
     weight = 100
-    url = "/install/"
+    url = "~/install/"
 [[menu.main]]
     name = "Docs"
     weight = 200
-    url = "/docs/"
+    url = "~/docs/"
 [[menu.main]]
     name = "Blog"
     weight = 300
-    url = "/blog/"
+    url = "~/blog/"
 [[menu.main]]
     name = "Faq"
     weight = 400
-    url = "/faq/"
+    url = "~/faq/"

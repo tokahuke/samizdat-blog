@@ -1,0 +1,11 @@
+[series]
+
+name = "foo"
+public-key = "fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc"
+ttl = "120 sec"
+
+
+[build]
+
+base = "./public"
+run = "./build.sh"
