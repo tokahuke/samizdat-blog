@@ -10,7 +10,9 @@ toc = true
 
 {{< rawhtml >}}
 
-<div class="message focus" data-component="message">All code under the Samizdat Project is Free Software and is licensed to any individal or organization under the AGPLv3 license. You are free to run, study, alter and redistribute the software as you wish, as long as you abide by the terms of the aforementioned license. <span class="close small"></span>
+<div class="message focus" data-component="message">
+  All code under the Samizdat Project is Free Software and is licensed to any individal or organization under the AGPLv3 license. You are free to run, study, alter and redistribute the software as you wish, as long as you abide by the terms of the aforementioned license. 
+  <span class="close small"></span>
 </div> 
 
 <h3 class="section-head">Samizdat Node</h3>
@@ -30,8 +32,8 @@ toc = true
 <div id="install-node-linux">
   <p>To install Samizdat Node (and the Samizdat CLI) in your preferred linux distribution, you can use our one-line installation script by copying and pasting the following code in your command line:</p>
 
-<pre>
-curl -Ls https://proxy.hubfederation.com/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh
+<pre class="template-origin">
+curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh
 </pre>
 </div>
 
@@ -51,6 +53,23 @@ curl -Ls https://proxy.hubfederation.com/_series/{{< samizdat_public_key >}}/ins
 
 <div style="padding: 1em"></div>
 
+
+<div class="message" data-component="message">
+  <h5>Note</h5>
+  Please note that this is still a proof of concept implementation. So three caveats are in place:
+
+  <ol style="padding-top: 0.5em">
+    <li>Don't rely on the availability of the network or of your content; have alternatives in place.</li>
+    <li>Expect frequent breaking changes.</li>
+    <li>Expect vulnerabilities. Do not use the network for sensitive content yet.</li>
+  </ol>
+
+  <span class="close small"></span>
+</div>
+
+<div style="padding: 1em"></div>
+
+
 <h3 class="section-head">Samizdat Hub</h3>
 
 If you want to work for the cause, welcome aboard! To serve a Samizdat Hub, you will need to have
@@ -63,10 +82,17 @@ If you want to work for the cause, welcome aboard! To serve a Samizdat Hub, you 
 
 <p>If you have checked all the boxes, just run the following code (as root!):</p>
 
-<pre>
-curl https://proxy.hubfederation.com/_series/{{< samizdat_public_key >}}/hub-install-latest.sh | sudo sh
+<pre class="template-origin">
+curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh | sudo sh
 </pre>
 
 And that is it! It should be up and running. You can learn how to maintain your hub <a href="#">in the documentation</a>.
+
+
+<script>
+  document.querySelectorAll(".template-origin").forEach(el => {
+    el.textContent = el.textContent.replace('${origin}', window.origin)
+  });
+</script>
 
 {{< /rawhtml >}}
