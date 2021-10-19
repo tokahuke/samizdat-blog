@@ -1,5 +1,12 @@
-{{ define "title"}} {{ .Title}} {{end}} {{ define "header"}} {{ partial "header"
-.}} {{end}} {{ define "main"}}
+{{ define "title"}}
+  {{ .Title}}
+{{end}}
+
+{{ define "header"}}
+  {{ partial "header" . }}
+{{end}}
+
+{{ define "main"}}
 <div class="push-center" itemscope itemtype="http://schema.org/BlogPosting">
   {{ template "_internal/schema.html" . }}
   <div id="hero">
@@ -46,7 +53,7 @@
 
         <div class="form-subscribe-twitter">
           <div>or</div>
-          <a href="https://twitter.com/jebli_7">Follow us on Twitter</a>
+          <a href="https://twitter.com/">Don't Follow us on Twitter</a>
         </div>
       </div>
 
@@ -59,5 +66,10 @@
       {{ end }}
     </div>
   </div>
-  {{ end }} {{ define "footer"}} {{ partial "footer.html" .}} {{ end }}
+{{ end }}
+
+{{ define "footer"}}
+  {{ partial "footer.html" .}}
+{{ end }}
+
 </div>

@@ -1,7 +1,14 @@
 [series]
 
-name = "foo"
+name = "blog"
 public-key = "fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc"
+ttl = "120 sec"
+
+
+[debug]
+
+name = "blog-debug"
+public-key = "QtkvVcLY69UXGxTQgT8n3-RyGYc3azLuDX2DFHFrDAs"
 ttl = "120 sec"
 
 
