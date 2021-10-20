@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <meta name="description" content="{{ .Params.tags.description }}" />
+    <meta property="og:title" content="{{ .Params.tags.og_title }}" />
+    <meta property="og:type" content="{{ .Params.tags.og_type }}" />
+    <meta property="og:url" content="{{ .Params.tags.og_url }}" />
+    <meta property="og:image" content="{{ .Params.tags.og_image }}" />
+    <meta property="og:description" content="{{ .Params.tags.og_description }}" />
+    <meta name="twitter:card" content="{{ .Params.tags.twitter_card }}" />
+    <meta name="twitter:site" content="{{ .Params.tags.twitter_site }}" />
+    <meta name="twitter:creator" content="{{ .Params.tags.twitter_creator }}" />
+
+    <title>{{ .Title }}</title>
+
+    {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    
+    {{ block "head" . }}{{ end }}
+  </head>
+  <body>
+    {{ block "body" . }}{{ end }}
+  </body>
+</html>

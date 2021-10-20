@@ -1,0 +1,104 @@
+{{ define "head" }}
+  
+{{ end }}
+
+{{ define "body" }}
+  {{ partial "header.html" }}
+  
+  <div id="hero-container">
+    <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
+      <div class="pt-3"></div>
+
+      {{ partial "icons/star-rate-primary.html" . }}
+
+      <h1 class="text-monospace font-weight-bold pt-4">
+        The SAMIZDAT SYSTEM
+      </h1>
+      <p class="pt-3 h4">
+        Your content, <u>available</u>.
+      </p>
+      
+      <p class="text-center text-monospace pt-3" style="width: 35%">
+        Tired of <u>cancel culture</u>? <br>
+        Of <u>big-tech</u> censorship? <br>
+        Of <u>big-government</u> censorship?
+      </p>
+      <p class="text-center text-monospace" style="width: 35%">---</p>
+      <p class="text-center text-monospace" style="width: 35%">
+        To action, comrade! SAMIZDAT is a distrubuted <u>self-publishing system</u>.
+        Publish and view content you love in the Internet <u>without meddling intermediaries</u>!
+      </p>
+    </section>
+
+    <section id="buttons" class="d-flex" style="flex-direction: column; align-items: center;">
+      <div class="pt-4 text-center">
+        <a class="btn btn-lg btn-secondary text-monospace" href="/install">
+          Get Samizdat
+        </a>
+        <a
+          class="btn btn-lg btn-outline-primary text-monospace ml-4"
+          href="https://github.com/tokahuke/samizdat"
+        >
+          View on GitHub
+        </a>
+        <p class="mt-2 text-muted text-small">
+          All Samizdat Software is <u>Free Software</u> and is fully available free of charge.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <section id="features" class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- <figure>
+            <img alt="Baseline" height="48" src="{{ "/img/kube/icon-baseline.png" | relURL }}" width="48">
+          </figure> -->
+          <h3 class="text-monospace">Convenient</h3>
+          <p>Forget about looking for platforms to serve your content.
+            Deploy <u>locally</u> and let your biggest fans serve it for you.
+          </p>
+        </div>
+        <div class="col">
+          <!-- <figure>
+            <img alt="Typography" height="48" src="{{ "/img/kube/icon-typo.png" | relURL }}" width="48">
+          </figure> -->
+          <h3 class="text-monospace">Escape Big-Tech Censorship</h3>
+          <p>Samizdat is a carrier, not a publisher.
+            <u>This is not policy; this is design.</u>
+          </p>
+        </div>
+        <div class="col">
+          <!-- <figure>
+            <img alt="Minimalism" height="48" src="{{ "/img/kube/icon-minimalism.png" | relURL }}" width="48">
+          </figure> -->
+          <h3 class="text-monospace">Private</h3>
+          <p>
+            Only the parties serving and receiving content know what it is all about.
+            No corporation-in-the-middle; no government-in-the-middle.</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PITCH -->
+    <div class="container-fluid row py-5 text-center">
+      <div class="col"></div>
+      <div class="col-6 text-center">
+        <h4 class="text-monospace h2">
+          It's just the Web all over again, <br> But think of the
+          <u>possibilities</u>!
+        </h4>
+        <p class="large">
+          By structuring the Web on <u>content rather than on location,</u> we
+          subvert the pervese incentives of having to trust big, meddling corporations to serve our
+          content. Being a server <u>is not the privilege of the big guy
+          anymore.</u>
+        </p>
+      </div>
+      <div class="col"></div>
+    </div> 
+  </section>
+
+  {{ partial "footer.html" . }}
+{{ end }}
