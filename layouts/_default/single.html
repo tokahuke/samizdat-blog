@@ -1,0 +1,15 @@
+{{ define "head" }}
+  
+{{ end }}
+
+{{ define "body" }}
+  {{ if eq .Params.type "bare" }}
+    {{ partial "header.html" . }}
+    {{ .Content }}
+    {{ partial "footer.html" . }}
+  {{ else if eq .Params.type "article" }}
+    {{ partial "article.html" . }}
+  {{ else }}
+    {{ partial "docs.html" . }}
+  {{ end }}
+{{ end }}

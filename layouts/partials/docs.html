@@ -1,0 +1,33 @@
+{{ partial "header.html" . }}
+
+<div id="content-container" class="d-flex">
+  <div id="menu-container" class="text-right border-right pr-3 pt-5 ml-3" style="width: 20%;">
+    <div id="menu">
+      <h3 class="h5 text-monospace font-weight-bold pb-2">Contents</h3>
+      {{ $currentPage := . }}
+      <ul class="list-unstyled">
+      {{ range .Site.Menus.docs }}
+        {{ if .HasChildren}}
+        <li class="my-1">
+          <a href="{{ .URL }}" class="text-muted font-weight-bold">{{ .Name }}</a>
+          <ul class="list-unstyled">
+            {{ range .Children }}
+              <li><a href="{{ .URL }}" class="text-muted">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </li>
+        {{ else }}
+          <li class="my-1">
+            <a href="{{ .URL }}" class="text-muted font-weight-bold">{{ .Name }}</a>
+          </li>
+        {{ end }}
+      {{ end }}
+      </ul>
+      </div>
+  </div>
+  <div id="content" class="docs-content pt-5 mb-5">
+    {{ .Content }}
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

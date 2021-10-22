@@ -1,0 +1,32 @@
+{{ partial "header.html" . }}
+
+<div id="content-container" class="d-flex">
+  <div id="content" class="w-50 pt-5 mb-5 mx-auto">
+    <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
+      <div class="pt-3"></div>
+    
+      {{ partial "icons/star-rate-primary.html" . }}
+    
+      <h1 class="text-monospace font-weight-bold pt-4">
+        The SAMIZDAT SYSTEM Blog
+      </h1>
+      <p class="pt-3 h4">
+        News from the front.
+      </p>
+      
+    </section>
+
+    <main>
+      {{ range .Pages.Reverse }}
+        <section class="my-3">
+          <p class="mb-1"><small class="text-monspace">{{.Date.Format "2006-01-02"}}</small></p>
+          <h2 class="h4 text-monospace"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          <p>{{ .Description }}</p>
+          <p class="text-monospace">---</p>
+        </section>
+      {{ end }}
+    </main>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
