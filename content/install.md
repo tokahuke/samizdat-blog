@@ -5,12 +5,19 @@ type: bare
 ---
 
 <div class="d-flex align-items-center mb-5" style="flex-direction:column;">
-<section id="hero" class="my-5 text-center w-50">
-  <h1 class="text-monospace font-weight-bold">Get Samizdat Today</h1>
-  <p class="h5 w-50 my-3 mx-auto">
+
+<section id="hero" class="d-flex w-50 py-5" style="flex-direction: column; align-items: center;">
+  <div class="pt-3"></div>
+
+  {{< star >}}
+
+  <h1 class="text-monospace font-weight-bold pt-4">
+    Get SAMIZDAT Today
+  </h1>
+  <p class="pt-3 h4 w-75 text-center">
     Download and install your own Samizdat node in you computer, be it Windows, MacOS or Linux.
   </p>
-  <div class="alert alert-info">
+  <div class="alert alert-info mt-4">
     All code under the Samizdat Project is Free Software and is licensed to any individal or
     organization under the AGPLv3 license. You are free to run, study, alter and redistribute
     the software as you wish, as long as you abide by the terms of the aforementioned license.

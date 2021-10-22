@@ -7,6 +7,8 @@
     {{ partial "header.html" . }}
     {{ .Content }}
     {{ partial "footer.html" . }}
+  {{ else if eq .Params.type "article" }}
+    {{ partial "article.html" . }}
   {{ else }}
     {{ partial "docs.html" . }}
   {{ end }}
