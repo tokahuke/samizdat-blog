@@ -1,3 +1,11 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'Samizdat: Your content, available'
+
+[Params]
+  samizdatPublicKey = "fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

@@ -3,7 +3,7 @@
 {{ end }}
 
 {{ define "body" }}
-  {{ partial "header.html" }}
+  {{ partial "header.html" . }}
   
   <div id="hero-container">
     <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
@@ -25,13 +25,13 @@
       </p>
       <p class="text-center text-monospace" style="width: 35%">---</p>
       <p class="text-center text-monospace" style="width: 35%">
-        To action, comrade! SAMIZDAT is a distrubuted <u>self-publishing system</u>.
+        SAMIZDAT is a distrubuted <u>self-publishing system</u>.
         Publish and view content you love in the Internet <u>without meddling intermediaries</u>!
       </p>
     </section>
 
     <section id="buttons" class="d-flex" style="flex-direction: column; align-items: center;">
-      <div class="pt-4 text-center">
+      <div class="pt-3 pb-5 text-center">
         <a class="btn btn-lg btn-secondary text-monospace" href="/install">
           Get Samizdat
         </a>
@@ -48,31 +48,22 @@
     </section>
   </div>
 
-  <section id="features" class="py-5 text-center">
+  <section id="features" class="text-center" style="margin: 4em 0;">
     <div class="container">
       <div class="row">
         <div class="col">
-          <!-- <figure>
-            <img alt="Baseline" height="48" src="{{ "/img/kube/icon-baseline.png" | relURL }}" width="48">
-          </figure> -->
           <h3 class="text-monospace">Convenient</h3>
           <p>Forget about looking for platforms to serve your content.
             Deploy <u>locally</u> and let your biggest fans serve it for you.
           </p>
         </div>
         <div class="col">
-          <!-- <figure>
-            <img alt="Typography" height="48" src="{{ "/img/kube/icon-typo.png" | relURL }}" width="48">
-          </figure> -->
           <h3 class="text-monospace">Escape Big-Tech Censorship</h3>
           <p>Samizdat is a carrier, not a publisher.
             <u>This is not policy; this is design.</u>
           </p>
         </div>
         <div class="col">
-          <!-- <figure>
-            <img alt="Minimalism" height="48" src="{{ "/img/kube/icon-minimalism.png" | relURL }}" width="48">
-          </figure> -->
           <h3 class="text-monospace">Private</h3>
           <p>
             Only the parties serving and receiving content know what it is all about.
@@ -82,7 +73,7 @@
     </div>
   
     <!-- PITCH -->
-    <div class="container-fluid row py-5 text-center">
+    <div class="container-fluid row text-center"  style="margin: 8em 0;">
       <div class="col"></div>
       <div class="col-6 text-center">
         <h4 class="text-monospace h2">

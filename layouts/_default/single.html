@@ -3,6 +3,11 @@
 {{ end }}
 
 {{ define "body" }}
-  {{ partial "header.html" }}
-  {{ .Content }}
+  {{ if eq .Params.type "bare" }}
+    {{ partial "header.html" . }}
+    {{ .Content }}
+    {{ partial "footer.html" . }}
+  {{ else }}
+    {{ partial "docs.html" . }}
+  {{ end }}
 {{ end }}
