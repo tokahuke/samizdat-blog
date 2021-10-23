@@ -12,9 +12,14 @@ function template() {
     cat ./static/templates/$1 | envsubst '$SAMIZDAT_PUBLIC_KEY' > static/$1
 }
 
-# cd ../samizdat &&
-# cargo build --release --all &&
-# cd ../samizdat-blog &&
+(    
+    [[ ! -z $SAMIZDAT_RELEASE ]] &&
+        cd ../samizdat &&
+        cargo build --release --all &&
+        cd ../samizdat-blog ||
+        echo "debug mode; not rebuilding"
+) &&
+
 mkdir -p ./static/bin &&
 find_execs | xargs -I % cp ../samizdat/target/release/% static/bin/% &&
 
