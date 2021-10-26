@@ -1,3 +1,4 @@
+resources/_gen
 public/
 static/bin
 static/install-latest.sh

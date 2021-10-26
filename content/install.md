@@ -105,8 +105,8 @@ curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo 
   </ul>
 
   <p>If you have checked all the boxes, just run the following code (as root!):</p>
-  <pre><code>
-curl https://proxy.hubfederation.com/_series/fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc/hub-install-latest.sh \
+  <pre class="template-origin"><code>
+curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh \
     | sudo sh
   </code></pre>
 
@@ -115,10 +115,6 @@ curl https://proxy.hubfederation.com/_series/fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-q
 
 
 <script>
-  document.querySelectorAll(".template-origin").forEach(el => {
-    el.textContent = el.textContent.replace('${origin}', window.origin)
-  });
-
   let currentButton = document.querySelector(".nav-link.active");
   let currentActive = document.querySelector(".tab-pane.show.active");
   document.querySelectorAll(".nav-link").forEach(el => {
