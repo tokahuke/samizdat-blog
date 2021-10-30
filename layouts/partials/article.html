@@ -1,8 +1,24 @@
 {{ partial "header.html" . }}
 
 <div id="content-container" class="d-flex">
-  <div id="content" class="docs-content pt-5 mb-5">
-    {{ .Content }}
+  <div id="content" class="w-50 pt-5 mb-5 mx-auto">
+    <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
+      <div class="pt-3"></div>
+    
+      {{ partial "icons/star-rate-primary.html" . }}
+    
+      <h1 class="text-monospace font-weight-bold pt-4">
+        {{ .Title }}
+      </h1>
+      <p class="pt-3 h4">
+        {{ .Description }}
+      </p>
+      
+    </section>
+
+    <main>
+      {{ .Content }}
+    </main>
   </div>
 </div>
 
