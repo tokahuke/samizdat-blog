@@ -1,8 +1,8 @@
 {{ partial "header.html" . }}
 
 <div id="content-container" class="d-flex">
-  <div id="menu-container" class="text-right border-right pr-3 pt-5 ml-3" style="width: 20%;">
-    <div id="menu">
+  <div id="menu-container" class="border-right" style="width: 20%;">
+    <div id="menu" class="text-right pr-3 pt-5 ml-3 sticky-top">
       <h3 class="h5 text-monospace font-weight-bold pb-2">Contents</h3>
       {{ $currentPage := . }}
       <ul class="list-unstyled">
@@ -23,11 +23,73 @@
         {{ end }}
       {{ end }}
       </ul>
-      </div>
+    </div>
   </div>
   <div id="content" class="docs-content pt-5" style="margin-bottom: 10em">
     {{ .Content }}
   </div>
+  <div id="toc" class="" style="width: 20%">
+    <div class="mr-3 pt-5 ml-3 sticky-top">
+      <h5 class="h5 text-monospace font-weight-bold pb-2">In this page</h3>
+      <ul class="toc list-unstyled"></ul>
+    </div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}
+
+<!-- "In this page" table of contents -->
+<script>
+  const headers = [...document.querySelectorAll("h2, h3")].map(el => { return {
+    tag: el.tagName,
+    id: el.id,
+    text: el.textContent,
+  }});
+
+  const toc = [];
+
+  for (header of headers) {
+    switch (header.tag) {
+      case "H2":
+        toc.push({ text: header.text, id: header.id, list: [] });
+        break;
+      case "H3":
+        if (toc.length > 0) {
+          toc[toc.length - 1].list.push({ text: header.text, id: header.id });
+        }
+        break;
+    }
+  }
+
+  let tocHTML = "";
+
+  for (item of toc) {
+    if (item.list.length == 0) {
+      tocHTML += `
+        <li class="my-1">
+          <a href="#${item.id}" class="text-muted">${item.text}</a>
+        </li>
+      `;
+    } else {
+      let subHTML = "";
+      for (subitem of item.list) {
+        subHTML += `
+          <li>
+            <a href="#${subitem.id}" class="text-muted">${subitem.text}</a>
+          </li>
+        `;
+      }
+      tocHTML += `
+        <li class="my-1">
+          <a href="#${item.id}" class="text-muted">${item.text}</a>
+          <ul class="list-unstyled ml-2">
+            ${subHTML}
+          </ul>
+        </li>
+      `;
+    }
+  }
+
+  document.querySelector("#toc .toc").innerHTML = tocHTML;
+
+</script>

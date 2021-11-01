@@ -24,14 +24,14 @@ type: bare
   </div>
 </section>
 
-<section id="content" class="w-50">
+<main id="content" class="w-50">
   <h2 class="text-monospace">Samizdat Node</h2>
   <p>
     Samizdat Node allows you to view and also publish content in the Samizdat Network. If you are an
     end user or publisher, this is the program for you! Follow the instructinons below to install.
   </p>
 
-  <div id="installation-tab" class="mt-3 mb-5">
+  <div id="installation-tab" class="mt-3 mb-2">
   <ul class="nav nav-pills mb-2">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#install-node-linux">Linux</a>
@@ -51,10 +51,7 @@ type: bare
         command line:
       </p>
 
-<pre class="template-origin"><code>
-curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh
-
-</code></pre>
+<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh</code></pre>
 
   </div>
 
@@ -74,6 +71,8 @@ curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo 
 
   </div>
   </div>
+
+<p>After you finish the installation, you may want to visit our <a href="/docs/getting-started">getting started</a> page to get up-to-speed with SAMIZDAT.</p>
 
 <div class="alert alert-dark my-3">
 <h3 class="font-weight-bold h4">Note</h3>
@@ -105,12 +104,10 @@ curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo 
   </ul>
 
   <p>If you have checked all the boxes, just run the following code (as root!):</p>
-  <pre class="template-origin"><code>
-curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh \
-    | sudo sh
-  </code></pre>
+  <pre class="template-origin"><code>curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh \
+    | sudo sh</code></pre>
 
-</section>
+</main>
 </div>
 
 

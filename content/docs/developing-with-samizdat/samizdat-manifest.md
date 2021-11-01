@@ -8,4 +8,9 @@ menu:
         weight: 20
 ---
 
+
 # The `Samizdat.toml` manifest
+
+When you create a new SAMIZDAT project with `samizdat init`, you automatically get a file in your directory called `Samizdat.toml`. This file controls how the SAMIZDAT CLI will manage the series associated with your project. This article is an overview on the file an how you can use it in your workflow.
+
+

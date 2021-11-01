@@ -25,19 +25,6 @@
   </head>
   <body>
     {{ block "body" . }}{{ end }}
-    <script>
-      const samizdatPublicKey = "{{ .Site.Params.samizdatPublicKey }}";
-      document.querySelectorAll(".template-origin").forEach(el => {
-        el.textContent = el.textContent.replace('${origin}', window.origin)
-      });
-      document.querySelectorAll("a.samizdat-link").forEach(el => {
-        const base = "http://localhost:4510/_series/" + samizdatPublicKey + "/";
-        const fullLink = base + el.textContent;
-        console.log(fullLink);
-        el.textContent = fullLink;
-        el.setAttribute("href", fullLink);
-      });
-  </script>
-
+    {{ block "scripts" .}}{{ end }}
   </body>
 </html>
