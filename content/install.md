@@ -51,7 +51,8 @@ type: bare
         command line:
       </p>
 
-<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo sh</code></pre>
+<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | \
+  sudo bash</code></pre>
 
   </div>
 
@@ -105,7 +106,7 @@ type: bare
 
   <p>If you have checked all the boxes, just run the following code (as root!):</p>
   <pre class="template-origin"><code>curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh \
-    | sudo sh</code></pre>
+    | sudo bash</code></pre>
 
 </main>
 </div>

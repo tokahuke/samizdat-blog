@@ -16,7 +16,7 @@ type: bare
     Donate for the cause
   </h1>
   <p class="pt-3 h4 w-75 text-center">
-    If you appreciate SAMIZDAT, would like to empower a freer Web, and have some cash to spare...
+    If you appreciate SAMIZDAT, would like to empower a freer Web and have some cash to spare...
   </p>
   <div class="alert alert-info mt-4">
     No, no PayPal, no Patreon, no VISA! These people are a pain. What? You thought I would create a tool for decentralized blogging and stuff and a the same time not want to have anything to do with crptocurrencies? Think again! 
