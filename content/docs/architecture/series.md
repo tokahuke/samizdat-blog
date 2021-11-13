@@ -10,3 +10,11 @@ menu:
 
 # Series
 
+## Keypairs and series owners
+
+## Editions
+
+## Edition item resolution and transfer
+
+## Announcements and subscriptions
+

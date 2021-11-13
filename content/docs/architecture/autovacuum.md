@@ -9,3 +9,9 @@ menu:
 ---
 
 # The autovacuum system
+
+## The usefulness metric
+
+## Pruning
+
+## Problems with the current implementation

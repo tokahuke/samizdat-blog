@@ -9,3 +9,16 @@ menu:
 ---
 
 # Objects
+
+
+## Object structure format
+
+### Header
+
+### Chunks
+
+
+## Object resoltion and transfer
+
+
+## Methods on objects
