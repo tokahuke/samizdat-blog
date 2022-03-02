@@ -8,7 +8,6 @@ ttl = "120 sec"
 [debug]
 
 name = "blog-debug"
-public-key = "QtkvVcLY69UXGxTQgT8n3-RyGYc3azLuDX2DFHFrDAs"
 ttl = "120 sec"
 
 

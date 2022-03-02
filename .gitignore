@@ -4,4 +4,6 @@ static/bin
 static/install-latest.sh
 static/hub-install-latest.sh
 
+.hugo_build.lock
+
 .Samizdat.priv

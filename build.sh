@@ -16,13 +16,15 @@ function template() {
     [[ ! -z $SAMIZDAT_RELEASE ]] &&
         cd ../samizdat &&
         cargo build --release --all &&
-        cd ../samizdat-blog ||
+        cd js &&
+        npm run build &&
+        cd ../../samizdat-blog ||
         echo "debug mode; not rebuilding"
 ) &&
 
 mkdir -p ./static/bin &&
 find_execs | xargs -I % cp ../samizdat/target/release/% static/bin/% &&
-
+cp ../samizdat/js/dist/samizdat.js static &&
 template hub-install-latest.sh &&
 template install-latest.sh &&
 
