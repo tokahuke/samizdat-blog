@@ -19,13 +19,13 @@ type: bare
     If you appreciate SAMIZDAT, would like to empower a freer Web and have some cash to spare...
   </p>
   <div class="alert alert-info mt-4">
-    No, no PayPal, no Patreon, no VISA! These people are a pain. What? You thought I would create a tool for decentralized blogging and stuff and a the same time not want to have anything to do with crptocurrencies? Think again! 
+    No, no PayPal, no Patreon, no VISA! These people are a pain. What? You thought I would create a tool for decentralized blogging and stuff and at the same time not want to have anything to do with cryptocurrencies? Think again! 
   </div>
 </section>
 
 <main id="content" class="w-50">
 
-<p>If you support this work, consider donating using crypto, only crypto. If you would like to use other currencies, you are welcome to open an issue in <a href="https://github.com/tokahuke/samizdat">GitHub</a>. By now, the following addresses are suported:</p>
+<p>If you support this work, consider donating using crypto, only crypto. If you would like to use other currencies, you are welcome to open an issue in <a href="https://github.com/tokahuke/samizdat">GitHub</a>. By now, the following addresses are supported:</p>
 
 
 <div class="d-flex mb-2">
@@ -40,6 +40,9 @@ type: bare
 </div>
 
 <p>Your donations are greatly appreciated!</p>
+
+<p>If you are still weary of donating, consider having a look at our <a href="~/about-us">about us</a> and at the <a href="https://github.com/tokahuke/samizdat">project page</a> at GitHub. 
+</p>
 
 </main>
 

@@ -20,6 +20,7 @@
 
     {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <script src="~/samizdat.js"></script>
     
     {{ block "head" . }}{{ end }}
   </head>

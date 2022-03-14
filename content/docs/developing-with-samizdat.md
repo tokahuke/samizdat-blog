@@ -1,6 +1,6 @@
 ---
 title: "Developing with Samizdat"
-date: 2021-10-29T21:47:37-03:00
+date: 2021-10-29T00:01:00-03:00
 type: docs
 menu:
     docs:

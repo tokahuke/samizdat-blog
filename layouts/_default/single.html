@@ -9,7 +9,10 @@
     {{ partial "footer.html" . }}
   {{ else if eq .Params.type "article" }}
     {{ partial "article.html" . }}
+  {{ else if eq .Params.type "docs" }}
+    {{ partial "docs.html" . }}
   {{ else }}
+    {{ warnf "No such document type %s" .Params.type }}
     {{ partial "docs.html" . }}
   {{ end }}
 {{ end }}

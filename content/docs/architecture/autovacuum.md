@@ -1,11 +1,11 @@
 ---
 title: "Autovacuum"
-date: 2021-10-29T21:57:59-03:00
+date: 2021-10-29T00:13:00-03:00
 type: docs
 menu:
     docs:
         parent: "Architecture"
-        weight: 50
+        weight: 60
 ---
 
 # The autovacuum system

@@ -1,6 +1,6 @@
 ---
 title: "Series"
-date: 2021-10-29T21:57:26-03:00
+date: 2021-10-29T00:11:00-03:00
 type: docs
 menu:
     docs:

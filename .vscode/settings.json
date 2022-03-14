@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
-        "kvstore"
+        "errorf",
+        "kvstore",
+        "warnf"
     ]
 }

@@ -25,8 +25,22 @@
       </ul>
     </div>
   </div>
-  <div id="content" class="docs-content pt-5" style="margin-bottom: 10em">
-    {{ .Content }}
+  <div id="content-container" class="docs-content pt-5" style="margin-bottom: 5em">
+    <div id="content" style="margin-bottom: 5em;">
+      {{ .Content }}
+    </div>
+    <div id="up-next" class="d-flex">
+      <div class="mr-auto">
+        {{ with .PrevInSection }}
+          <a href="{{ .Permalink }}">&lArr;&ensp;{{ .Title }}</a>
+        {{ end }}
+      </div>
+      <div>
+        {{ with .NextInSection }}
+          <a href="{{ .Permalink }}">{{ .Title }}&ensp;&rArr;</a>
+        {{ end }}
+      </div>
+    </div>
   </div>
   <div id="toc" class="" style="width: 20%">
     <div class="mr-3 pt-5 ml-3 sticky-top">

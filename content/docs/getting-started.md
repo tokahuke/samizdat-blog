@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-date: 2021-10-22T22:58:39-03:00
+date: 2021-10-29T00:00:00-03:00
 menu:
     docs:
         weight: 2

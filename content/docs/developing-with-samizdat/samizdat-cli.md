@@ -1,6 +1,6 @@
 ---
 title: "Samizdat CLI"
-date: 2021-10-29T21:52:27-03:00
+date: 2021-10-29T00:02:00-03:00
 type: docs
 menu:
     docs:
