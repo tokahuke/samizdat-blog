@@ -4,7 +4,7 @@ title = 'Samizdat: Your content, available'
 
 [Params]
   samizdatPublicKey = "fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc"
-
+  getSamizdatPublicKey = "r0Km0HptEt6Fhosmy7qxaKxyDtwHkzi0-eYbt1WatdM"
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
