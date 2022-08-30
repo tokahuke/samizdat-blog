@@ -44,7 +44,7 @@ type: bare
     </li>
   </ul>
   <div class="tab-content">
-  <div class="tab-pane show active" id="install-node-linux" role="tabpanel">
+  <div class="tab-pane" id="install-node-linux" role="tabpanel">
       <p>
         To install Samizdat Node (and the Samizdat CLI) in your preferred linux distribution, you
         can use our one-line installation script by copying and pasting the following code in your
@@ -116,8 +116,14 @@ sudo brew services start samizdat  # make sure you have Brew Services installed
 
 
 <script>
-  let currentButton = document.querySelector(".nav-link.active");
-  let currentActive = document.querySelector(".tab-pane.show.active");
+  let os = "unknown";
+  if (navigator.appVersion.indexOf('Win') != -1) os = 'windows';
+  if (navigator.appVersion.indexOf('Mac') != -1) os = 'macos';
+  if (navigator.appVersion.indexOf('X11') != -1) os = 'linux';
+  if (navigator.appVersion.indexOf('Linux') != -1) os = 'linux';
+
+  let currentButton = document.querySelector(`#btn-${os}`);
+  let currentActive = document.querySelector(`#install-node-${os}`);
   document.querySelectorAll(".nav-link").forEach(el => {
     el.addEventListener("click", (e) => {
       currentActive.classList.remove("show");
@@ -136,19 +142,7 @@ sudo brew services start samizdat  # make sure you have Brew Services installed
     })
   });
 
-  // Guess the OS!
-  const ua = navigator.userAgent;
-  let os = null;
-
-  if (ua.indexOf("Linux") != -1) {
-    os = "linux";  
-  } else if (ua.indexOf("Mac OS X") != -1) {
-    os = "macos";
-  } else if (ua.indexOf("Windows") != -1) {
-    os = "windows";
-  }
-
-  if (os) {
-    document.getElementById(`btn-${os}`).classList.add("active");
-  }
+  currentActive.classList.add("show");
+  currentActive.classList.add("active");
+  currentButton.classList.add("active");
 </script>
