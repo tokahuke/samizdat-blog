@@ -32,12 +32,32 @@
   background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,1.0));
 }
 
+.pre-container {
+  background-color: $black;
+  position: relative;
+
+  .pre-overlay {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  &:hover .pre-overlay {
+    display: block;
+    opacity: 1.0;
+  }
+}
+
 pre {
   word-wrap: break-word;
   border: 1px lightgray solid;
   border-radius: 4px;
   padding: 0 12px;
   background-color: $black;
+  border-color: $black;
   color: white;
   font-size: 14px;
   padding: 1.0em 1.0em;
