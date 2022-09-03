@@ -32,9 +32,9 @@ npm install samizdat-js
 ```
 (coming soon!) or you can import it in your webpage directly using a script tag, like so:
 ```html
-<script src="/samizdat/samizdat.js"></script>
+<script src="/get-samizdat/samizdat.js"></script>
 <!-- ... or ... -->
-<script src="/_series/fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc/samizdat.js"></script>
+<script src="/_series/{{< get_samizdat_public_key >}}/samizdat.js"></script>
 ```
 This script loads a class in you `window` object called `Samizdat`, which is the class of SAMIZDAT clients. To instantiate a client, you must call its constructor in one of the two following fashions:
 ```js

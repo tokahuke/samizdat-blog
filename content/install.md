@@ -34,23 +34,24 @@ type: bare
   <div id="installation-tab" class="mt-3 mb-2">
   <ul class="nav nav-pills mb-2">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#install-node-linux">Linux</a>
+      <a class="nav-link" id="btn-linux" data-toggle="tab" href="#install-node-linux">Linux</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#install-node-windows">Windows</a>
+      <a class="nav-link" id="btn-macos" data-toggle="tab" href="#install-node-macos">MacOS</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#install-node-macos">MacOs</a>
+      <a class="nav-link" id="btn-windows" data-toggle="tab" href="#install-node-windows">Windows</a>
     </li>
   </ul>
   <div class="tab-content">
-  <div class="tab-pane show active" id="install-node-linux" role="tabpanel">
+  <div class="tab-pane" id="install-node-linux" role="tabpanel">
       <p>
         To install Samizdat Node (and the Samizdat CLI) in your preferred linux distribution, you
         can use our one-line installation script by copying and pasting the following code in your
         command line:
       </p>
 
+<<<<<<< HEAD
   <div class="pre-container">
   <button type="button" class="btn btn-primary pre-overlay" style="">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -60,21 +61,31 @@ type: bare
   </button>
   <pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< samizdat_public_key >}}/install-latest.sh | sudo bash</code></pre>
   </div>
+=======
+<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< get_samizdat_public_key >}}/node/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
+
+  </div>
+
+  <div class="tab-pane" id="install-node-macos" role="tabpanel">
+      <p>
+        To install Samizdat Node (and the Samizdat CLI) in your fancy MacOS, we offer you our very own <code>homebrew</code> package (a.k.a formula):
+      </p>
+
+<pre class="template-origin"><code>brew tap tokahuke/samizdat         # add our tap
+brew install samizdat              # install samizdat
+sudo brew services start samizdat  # make sure you have Brew Services installed
+</code></pre>
+
+>>>>>>> e82cb14d09bdca50eaa12c4bfed9ffac9735f122
   </div>
 
   <div class="tab-pane" id="install-node-windows" role="tabpanel">
     <p>Click on the big friendly button:</p>
     <div class="text-center">
-      <a href="#" class="btn btn-primary btn-lg" role="button">Download Samizdat Node for Windows (x64)</a>
+      <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Download installer <em>(soon)</em> </a>
     </div>
   </div>
 
-  <div class="tab-pane" id="install-node-macos" role="tabpanel">
-    <p>Click on the big friendly button:</p>
-    <div class="text-center">
-      <a href="#" class="btn btn-primary btn-lg" role="button">Download Samizdat Node for MacOS</a>
-    </div>
-  </div>
 
   </div>
   </div>
@@ -104,8 +115,7 @@ type: bare
       provisioned by a cloud platform. You can have your own for as little as US$5 per month.
     </li>
     <li>
-      A public IPv6 address associated to your machine. If you use a cloud platform, this is as
-      simple as checkig a box, if at all.
+      A public IP (preferably both v4 and v6) address associated to your machine. If you use a cloud platform, this is as simple as checkig a box, if at all.
     </li>
     <li>A Linux distribution installed in your machine.</li>
   </ul>
@@ -118,15 +128,21 @@ type: bare
   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg>
   </button>
-  <pre class="template-origin"><code>curl ${origin}/_series/{{< samizdat_public_key >}}/hub-install-latest.sh | sudo bash</code></pre>
-  </div>
+  <pre class="template-origin"><code>curl ${origin}/_series/{{< get_samizdat_public_key >}}/latest/hub/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
+
 </main>
 </div>
 
 
 <script>
-  let currentButton = document.querySelector(".nav-link.active");
-  let currentActive = document.querySelector(".tab-pane.show.active");
+  let os = "unknown";
+  if (navigator.appVersion.indexOf('Win') != -1) os = 'windows';
+  if (navigator.appVersion.indexOf('Mac') != -1) os = 'macos';
+  if (navigator.appVersion.indexOf('X11') != -1) os = 'linux';
+  if (navigator.appVersion.indexOf('Linux') != -1) os = 'linux';
+
+  let currentButton = document.querySelector(`#btn-${os}`);
+  let currentActive = document.querySelector(`#install-node-${os}`);
   document.querySelectorAll(".nav-link").forEach(el => {
     el.addEventListener("click", (e) => {
       currentActive.classList.remove("show");
@@ -145,6 +161,7 @@ type: bare
     })
   });
 
+<<<<<<< HEAD
   document.querySelectorAll(".pre-container").forEach(el => {
     const copyButton = el.querySelector("button.pre-overlay");
     const content = el.querySelector("pre").textContent.replace('${origin}', window.origin);
@@ -152,4 +169,9 @@ type: bare
       navigator.clipboard.writeText(content);
     });
   });
+=======
+  currentActive.classList.add("show");
+  currentActive.classList.add("active");
+  currentButton.classList.add("active");
+>>>>>>> e82cb14d09bdca50eaa12c4bfed9ffac9735f122
 </script>
