@@ -125,9 +125,6 @@ sudo brew services start samizdat  # make sure you have Brew Services installed
   </button>
   <pre class="template-origin"><code>curl ${origin}/_series/{{< get_samizdat_public_key >}}/hub-install-latest.sh | sudo bash</code></pre>
   </div>
-  <p>If you have checked all the boxes, just run the following code:</p>
-  <pre class="template-origin"><code>curl ${origin}/_series/{{< get_samizdat_public_key >}}/latest/hub/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
-
 </main>
 </div>
 
