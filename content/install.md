@@ -51,7 +51,7 @@ type: bare
         command line:
       </p>
 
-<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< get_samizdat_public_key >}}/node/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
+<pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< get_samizdat_public_key >}}/latest/node/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
 
   </div>
 

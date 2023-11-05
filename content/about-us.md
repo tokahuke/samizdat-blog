@@ -5,6 +5,7 @@ type: bare
 ---
 
 
+
 <div class="d-flex align-items-center mb-5" style="flex-direction:column;">
 
 <section id="hero" class="d-flex w-50 py-5" style="flex-direction: column; align-items: center;">
@@ -25,7 +26,9 @@ type: bare
 <p>SAMIZDAT is a free software initiative from me, <a href="https://github.com/tokahuke">a guy you just met in the Internet</a> and some more helpful folks you have not met yet, but are as important. I am of course talking about the contributors to the project. Do you want to join the cause? Anyone is welcome, as long as you keep the conversation civil. Go to the <a href="https://github.com/tokahuke/samizdat">project page on GitHub</a> and have a look around. There is plenty to be done!
 </p>
 
-<p>No idea how to code? No problem! You can also <a href="~/donate">donate crypto</a> to be used in the project. After all, we do have a small server which we need to keep running to bootstrap to project and with your support we can lure developers to work for the project with the sweet scent of cash.
+<p>No idea how to code? No problem! You can also <a href="~/donate">donate some crypto</a> to be used in the project. After all, we do 
+have a 
+small server which we need to keep running to bootstrap to project and with your support we can lure developers to work for the project with the sweet scent of cash.
 </p> 
 
 <h2 class="text-monospace font-weight-bold pt-2">User privacy</h2>
