@@ -51,7 +51,15 @@ type: bare
         command line:
       </p>
 
+<div class="pre-container">
+  <button type="button" class="btn btn-primary pre-overlay" style="">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+</svg>
+  </button>
 <pre class="template-origin"><code>curl -Ls ${origin}/_series/{{< get_samizdat_public_key >}}/latest/node/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
+</div>
 
   </div>
 
@@ -60,11 +68,18 @@ type: bare
         To install Samizdat Node (and the Samizdat CLI) in your fancy MacOS, we offer you our very own <code>homebrew</code> package (a.k.a formula):
       </p>
 
-<pre class="template-origin"><code>brew tap tokahuke/samizdat         # add our tap
+<div class="pre-container">
+  <button type="button" class="btn btn-primary pre-overlay" style="">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+</svg>
+  </button>
+  <pre class="template-origin"><code>brew tap tokahuke/samizdat         # add our tap
 brew install samizdat              # install samizdat
 sudo brew services start samizdat  # make sure you have Brew Services installed
 </code></pre>
-
+</div>
   </div>
 
   <div class="tab-pane" id="install-node-windows" role="tabpanel">
@@ -108,9 +123,16 @@ sudo brew services start samizdat  # make sure you have Brew Services installed
     <li>A Linux distribution installed in your machine.</li>
   </ul>
 
-  <p>If you have checked all the boxes, just run the following code:</p>
-  <pre class="template-origin"><code>curl ${origin}/_series/{{< get_samizdat_public_key >}}/latest/hub/x86_64-unknown-linux-gnu/install.sh | sudo bash</code></pre>
-
+  <p>If you have checked all the boxes, just run the following code (as root!):</p>
+  <div class="pre-container">
+  <button type="button" class="btn btn-primary pre-overlay" style="">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+</svg>
+  </button>
+  <pre class="template-origin"><code>curl ${origin}/_series/{{< get_samizdat_public_key >}}/hub-install-latest.sh | sudo bash</code></pre>
+  </div>
 </main>
 </div>
 
@@ -145,4 +167,12 @@ sudo brew services start samizdat  # make sure you have Brew Services installed
   currentActive.classList.add("show");
   currentActive.classList.add("active");
   currentButton.classList.add("active");
+
+  document.querySelectorAll(".pre-container").forEach(el => {
+    const copyButton = el.querySelector("button.pre-overlay");
+    const content = el.querySelector("pre").textContent.replace('${origin}', window.origin);
+    copyButton.addEventListener("click", (e) => {
+      navigator.clipboard.writeText(content);
+    });
+  });
 </script>
