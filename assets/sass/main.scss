@@ -12,6 +12,19 @@
   font-family: $font-family-mono;
 }
 
+
+.active .nav-link {
+  color: $primary !important; 
+}
+
+.nav-link {
+  color: lighten($black, 33%) !important;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
 .text-monospace {
   font-family: $font-family-mono !important;
 }
@@ -79,4 +92,17 @@ pre {
     margin-bottom: 0.5em;
     font-family: 'Space Mono';
   }
+
+  p {
+    line-height: 1.55;
+  }
+}
+
+#menu-container {
+  font-size: smaller;
+}
+
+#toc {
+  font-size: smaller;
+  color: $paragraph-color;
 }

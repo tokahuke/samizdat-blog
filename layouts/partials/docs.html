@@ -2,7 +2,7 @@
 
 <div id="content-container" class="d-flex">
   <div id="menu-container" class="border-right" style="width: 20%;">
-    <div id="menu" class="text-right pr-3 pt-5 ml-3 sticky-top">
+    <div id="menu" class="text-right pr-3 pt-5 ml-3" style="position: sticky; top: 105px">
       <h3 class="h5 text-monospace font-weight-bold pb-2">Contents</h3>
       {{ $currentPage := . }}
       <ul class="list-unstyled">
@@ -41,10 +41,22 @@
         {{ end }}
       </div>
     </div>
+    <div class="p-4"></div>
   </div>
   <div id="toc" class="" style="width: 20%">
-    <div class="mr-3 pt-5 ml-3 sticky-top">
-      <h5 class="h5 text-monospace font-weight-bold pb-2">In this page</h3>
+    <div class="mr-3 pt-5 ml-3" style="position: sticky; top: 105px">
+      <div class="ml-auto mb-1">
+        {{ with .NextInSection }}
+          <a href="{{ .Permalink }}">{{ .Title }}&ensp;&rArr;</a>
+        {{ end }}
+      </div>
+      <div class="mr-auto mb-3">
+        {{ with .PrevInSection }}
+          <a href="{{ .Permalink }}">&lArr;&ensp;{{ .Title }}</a>
+        {{ end }}
+      </div>
+
+      <h5 class="h5 text-monospace font-weight-bold mb-1 pb-1 border-bottom">On this page</h5>
       <ul class="toc list-unstyled"></ul>
     </div>
   </div>
