@@ -6,7 +6,7 @@
   {{ partial "header.html" . }}
   <div id="hero-container">
     <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
-      <div class="pt-3"></div>
+      <div class="pt-5"></div>
 
       {{ partial "icons/star-rate-primary.html" . }}
 
@@ -30,7 +30,7 @@
     </section>
 
     <section id="buttons" class="d-flex" style="flex-direction: column; align-items: center;">
-      <div class="pt-3 pb-5 text-center">
+      <div class="pb-4 text-center">
         <a class="btn btn-lg btn-secondary text-monospace" href="/install">
           Get Samizdat
         </a>
@@ -45,11 +45,12 @@
         </p>
       </div>
     </section>
+    <!-- <div id="transition" style="padding-top: 40px;"></div> -->
   </div>
 
 
-  <section id="features" class="text-center" style="margin: 4em 0;">
-    <h2 class="text-monospace">How it works</h2>
+  <section id="features" class="text-center" style="margin: 4em 0; min-height: 256px;">
+    <h2 class="text-monospace font-weight-bold">How it works</h2>
     <div class="container" style="margin-top: 2em;">
       <div class="row">
         <div class="col">
@@ -68,43 +69,52 @@
     </div>
   </section>
 
-  <section id="features" class="text-center" style="margin: 4em 0;">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h3 class="text-monospace">Convenient</h3>
-          <p>Forget about looking for platforms to serve your content.
-            Deploy <u>locally</u> and let your biggest fans serve it for you.
-          </p>
-        </div>
-        <div class="col">
-          <h3 class="text-monospace">Escape Big-Tech Censorship</h3>
-          <p>Samizdat is a carrier, not a publisher.
-            <u>This is not policy; this is design.</u>
-          </p>
-        </div>
-        <div class="col">
-          <h3 class="text-monospace">Private</h3>
-          <p>
-            Only the parties serving and receiving content know what it is all about.
-            No corporation-in-the-middle; no government-in-the-middle.</p>
-        </div>
-      </div>
-    </div>
-  
-    <!-- PITCH -->
-    <div class="container-fluid row text-center"  style="margin: 8em 0;">
+  <section class="bg-pastel">
+    <div class="container-fluid row text-center" style="padding: 8em 0;">
       <div class="col"></div>
       <div class="col-6 text-center">
         <h4 class="text-monospace h2">
-          It's just the Web all over again, <br> But think of the
+          This webpage is already part of the SAMIZDAT network
+        </h4>
+        <p class="large">
+          And you didn't even notice! If you just landed here, you are seeing a <u>proxied</u> version of this website. But why rely on an intermediary? <a href="/install">Download</a> SAMIZDAT and get the native experience.
+        </p>
+      </div>
+      <div class="col"></div>
+    </div> 
+  </section>
+
+  <section id="features" class="text-center d-flex justify-content-center align-items-center w-100" style="margin: 4em 0;">
+    <h2 class="text-monospace font-weight-bold ml-auto">The upside</h2>
+    <div class="container" style="margin-top: 2em; max-width: 33%; text-align: center;">
+      <div class="row mb-2">
+        <h3 class="text-monospace w-100">Convenient</h3>
+        <p>Forget about looking for platforms to serve your content.
+          Deploy <u>locally</u> and let your biggest fans serve it for you.
+        </p>
+      </div>
+      <div class="row">
+        <h3 class="text-monospace w-100">Private</h3>
+        <p>
+          Only the parties serving and receiving content know what it is all about.
+          No corporation-in-the-middle; no government-in-the-middle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-pastel">
+    <!-- PITCH -->
+    <div class="container-fluid row text-center" style="padding: 8em 0;">
+      <div class="col"></div>
+      <div class="col-6 text-center">
+        <h4 class="text-monospace h2">
+          It's just the Web all over again. But think of the
           <u>possibilities</u>!
         </h4>
         <p class="large">
           By structuring the Web on <u>content rather than on location,</u> we
-          subvert the pervese incentives of having to trust big, meddling corporations to serve our
-          content. Being a server <u>is not the privilege of the big guy
-          anymore.</u>
+          bypass the the big servers and the big companies. Your content is not
+          on Google or on Meta; it's with your audience. 
         </p>
       </div>
       <div class="col"></div>
