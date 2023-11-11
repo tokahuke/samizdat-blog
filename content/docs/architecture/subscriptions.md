@@ -1,5 +1,5 @@
 ---
-title: "Subscription"
+title: "Subscriptions"
 date: 2021-10-29T00:12:00-03:00
 type: docs
 menu:
@@ -9,3 +9,5 @@ menu:
 ---
 
 <!-- Your markdown content goes here -->
+
+# Subscriptions
