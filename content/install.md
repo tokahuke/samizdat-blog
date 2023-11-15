@@ -133,7 +133,8 @@ brew postinstall samizdat            # configure your node after the service is 
   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg>
   </button>
-  <pre class="template-origin"><code>curl ${origin}/get-samizdat/hub-install-latest.sh | sudo bash</code></pre>
+  <pre class="template-origin"><code>curl ${origin}/get-samizdat/latest/hub/x86_64-unknown-linux-gnu/install.sh
+  | sudo bash</code></pre>
   </div>
 </main>
 </div>
