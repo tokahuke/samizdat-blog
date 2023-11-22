@@ -87,7 +87,7 @@ brew postinstall samizdat            # configure your node after the service is 
   <div class="tab-pane" id="install-node-windows" role="tabpanel">
     <p>Click on the big friendly button:</p>
     <div class="text-center">
-      <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Download installer <em>(soon)</em> </a>
+      <a href="${origin}/get-samizdat/latest/node/x86_64-pc-windows-gnu/samizdat-installer.exe" class="btn btn-primary btn-lg has-origin" role="button">Download installer</a>
     </div>
   </div>
 
@@ -178,4 +178,8 @@ brew postinstall samizdat            # configure your node after the service is 
       navigator.clipboard.writeText(content);
     });
   });
+  document.querySelectorAll("a.has-origin").forEach(el => {
+    // Need to use `getAttribute` and `setAttribute` and not `href` directly in this case:
+    el.setAttribute("href", el.getAttribute("href").replace("${origin}", window.origin))
+  })
 </script>
