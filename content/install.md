@@ -58,7 +58,7 @@ type: bare
   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg>
   </button>
-<pre class="template-origin"><code>curl -Ls ${origin}/get-samizdat/latest/node/x86_64-unknown-linux-gnu/install.sh \
+<pre class="template-origin"><code>curl -Ls ${origin}~/get-samizdat/latest/x86_64-unknown-linux-gnu/node/install.sh \
   | sudo bash</code></pre>
 </div>
 
@@ -87,7 +87,7 @@ brew postinstall samizdat            # configure your node after the service is 
   <div class="tab-pane" id="install-node-windows" role="tabpanel">
     <p>Click on the big friendly button:</p>
     <div class="text-center">
-      <a href="${origin}/get-samizdat/latest/node/x86_64-pc-windows-gnu/samizdat-installer.exe" class="btn btn-primary btn-lg has-origin" role="button">Download installer</a>
+      <a href="${origin}/get-samizdat/latest/x86_64-pc-windows-gnu/node/samizdat-installer.exe" class="btn btn-primary btn-lg has-origin" role="button">Download installer</a>
     </div>
   </div>
 
@@ -133,7 +133,7 @@ brew postinstall samizdat            # configure your node after the service is 
   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg>
   </button>
-  <pre class="template-origin"><code>curl ${origin}/get-samizdat/latest/hub/x86_64-unknown-linux-gnu/install.sh
+  <pre class="template-origin"><code>curl -Ls ${origin}/~get-samizdat/latest/x86_64-unknown-linux-gnu/hub/install.sh
   | sudo bash</code></pre>
   </div>
 </main>
