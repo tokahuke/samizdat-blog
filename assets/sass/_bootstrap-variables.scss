@@ -20,10 +20,10 @@ $secondary: #fc9208;
 $black: #212529;
 
 // Links
-$link-color: $primary;
+$link-color: rgba($color: $primary, $alpha: 0.75);
 $link-decoration: none;
-$link-hover-color: darken($primary, 20%);
-$link-hover-decoration: underline;
+$link-hover-color: $primary; // darken($primary, 20%);
+$link-hover-decoration: none;
 
 // Fonts
 $font-size-base: 1.125rem; // Assumes the browser default, typically `16px`

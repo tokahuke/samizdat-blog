@@ -18,18 +18,17 @@ header {
   }
 
   .active .nav-link {
-    color: $primary !important; 
+    color: $primary !important;
   }
-  
+
   .nav-link {
     color: lighten($black, 33%) !important;
-  
+
     &:hover {
       color: $primary !important;
     }
   }
 }
-
 
 .text-monospace {
   font-family: $font-family-mono !important;
@@ -39,21 +38,21 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right 0px top -80px;
-  background-image: 
+  background-image:
     url(~/dan-cristian-padure-wpyQ_uSsQdU-unsplash.jpg);
 }
 
 #hero {
-  background-color: rgba(255,255,255,0.4);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 #buttons {
-  background-color: rgba(255,255,255,0.4);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 #transition {
   // background-color: rgba(255,255,255,0.5);
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,1.0));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1.0));
 }
 
 .bg-pastel {
@@ -95,17 +94,22 @@ pre {
   width: 45%;
   margin-left: 5em;
   margin-right: 5em;
-  
+
   h1 {
     margin-bottom: 0.5em;
     font-family: 'Space Mono';
     font-weight: bold;
   }
 
-  h2, h3, h4, h5, h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: 1.0em;
     margin-bottom: 0.5em;
     font-family: 'Space Mono';
+    font-weight: bold;
   }
 
   p {
@@ -120,4 +124,40 @@ pre {
 #toc {
   font-size: smaller;
   color: $paragraph-color;
+}
+
+
+.article-body {
+  h1 {
+    margin-bottom: 0.5em;
+    font-family: 'Space Mono';
+    font-weight: bold;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1.0em;
+    margin-bottom: 0.5em;
+    font-family: 'Space Mono';
+    font-weight: bold;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+}
+
+p>code,
+.alert>code,
+li>code,
+ol>code,
+h1>code,
+h2>code,
+h3>code,
+h4>code {
+  background-color: rgba($color: $primary, $alpha: 0.1);
+  color: $black;
 }
