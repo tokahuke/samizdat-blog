@@ -5,7 +5,9 @@
 {{ define "body" }}
   {{ if eq .Params.type "bare" }}
     {{ partial "header.html" . }}
-    {{ .Content }}
+    <main id="main" class="prose-samizdat mx-auto max-w-3xl px-6 pt-16 pb-24">
+      {{ .Content }}
+    </main>
     {{ partial "footer.html" . }}
   {{ else if eq .Params.type "article" }}
     {{ partial "article.html" . }}
@@ -17,20 +19,3 @@
   {{ end }}
 {{ end }}
 
-{{ define "scripts" }}
-  <script>
-    const samizdatPublicKey = "{{ .Site.Params.samizdatPublicKey }}";
-    document.querySelectorAll(".template-origin").forEach(el => {
-      el.textContent = el.textContent.replace('${origin}', window.origin)
-    });
-  </script>
-  <script>
-    document.querySelectorAll("a.samizdat-link").forEach(el => {
-      const base = "http://localhost:4510/_series/" + samizdatPublicKey + "/";
-      const fullLink = base + el.textContent;
-      console.log(fullLink);
-      el.textContent = fullLink;
-      el.setAttribute("href", fullLink);
-    });
-  </script>
-{{ end }}

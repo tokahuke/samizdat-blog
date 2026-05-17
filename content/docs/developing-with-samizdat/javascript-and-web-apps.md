@@ -15,9 +15,9 @@ SAMIZDAT allows you to create not only static pages, but also full-blown web app
 
 ## JavaScript context sharing
 
-<div class="alert alert-primary">
+<aside class="note">
 Careful when storing data in the user's browser when using SAMIZDAT! Other pages in the network will have access to it if stored as plaintext. This is a known issue. Local information storages might be totally disabled in the future.
-</div>
+</aside>
 
 Browsers are very good at keeping data belonging to different sites separate in your computer. However, they operate using the standard rules of the Web, which are all based on location addressing. For them, a SAMIZDAT node appears as a single website and will therefore receive a _single_ context, independent of series, collection or object hash. This means that cookies, `localStorage` and even `sessionStorage` (any kind of storage, for that matter!) might be observed by other, potentially evil, people which are able to convince the poor user to load their page. Therefore, avoid storing _any kind_ of sensitive information on _any kind_ of browser storage when using SAMIZDAT. Everybody will be able to see it.
 
@@ -45,9 +45,9 @@ const sz = new Samizdat(["ManageObjects"]);
 ```
 In the next sessions, we will discuss about the public API, the private API as well as how to ask the user for consent to use the private API.
 
-<div class="alert alert-success">
+<aside class="note">
 <code>SamizdatJS</code> is available for you to fiddle with in this page (if you are not sitting behind a SAMIZDAT proxy). Feel welcome to hit <code>Ctrl+Shift+I</code> and give it a go in your browser's console.
-</div>
+</aside>
 
 ## Public APIs
 

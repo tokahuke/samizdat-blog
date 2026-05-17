@@ -1,121 +1,56 @@
 {{ partial "header.html" . }}
 
-<div id="content-container" class="d-flex">
-  <div id="menu-container" class="border-right" style="width: 20%;">
-    <div id="menu" class="text-right pr-3 pt-5 ml-3" style="position: sticky; top: 105px">
-      <h3 class="h5 text-monospace font-weight-bold pb-2">Contents</h3>
-      {{ $currentPage := . }}
-      <ul class="list-unstyled">
+<div class="docs-layout">
+  <aside class="docs-sidebar" aria-label="Documentation sections">
+    <h2 class="docs-sidebar-title">Contents</h2>
+    {{ $currentURL := .RelPermalink }}
+    <ul class="docs-menu">
       {{ range .Site.Menus.docs }}
-        {{ if .HasChildren}}
-        <li class="my-1">
-          <a href="{{ .URL }}" class="text-muted font-weight-bold">{{ .Name }}</a>
-          <ul class="list-unstyled">
-            {{ range .Children }}
-              <li><a href="{{ .URL }}" class="text-muted">{{ .Name }}</a></li>
-            {{ end }}
-          </ul>
+        {{ $isCurrent := eq .URL $currentURL }}
+        <li class="docs-menu-item">
+          <a href="{{ .URL }}" class="docs-menu-link"
+            {{- if $isCurrent }} aria-current="page"{{ end -}}
+          >{{ .Name }}</a>
+          {{ if .HasChildren }}
+            <ul class="docs-menu-sub">
+              {{ range .Children }}
+                {{ $isChildCurrent := eq .URL $currentURL }}
+                <li>
+                  <a href="{{ .URL }}" class="docs-menu-link docs-menu-link--sub"
+                    {{- if $isChildCurrent }} aria-current="page"{{ end -}}
+                  >{{ .Name }}</a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
         </li>
-        {{ else }}
-          <li class="my-1">
-            <a href="{{ .URL }}" class="text-muted font-weight-bold">{{ .Name }}</a>
-          </li>
-        {{ end }}
       {{ end }}
-      </ul>
-    </div>
-  </div>
-  <div id="content-container" class="docs-content pt-5" style="margin-bottom: 5em">
-    <div id="content" style="margin-bottom: 5em;">
+    </ul>
+  </aside>
+
+  <main id="main" class="docs-main">
+    <div class="prose-samizdat docs-content">
       {{ .Content }}
     </div>
-    <div id="up-next" class="d-flex">
-      <div class="mr-auto">
-        {{ with .PrevInSection }}
-          <a href="{{ .Permalink }}">&lArr;&ensp;{{ .Title }}</a>
-        {{ end }}
-      </div>
-      <div>
-        {{ with .NextInSection }}
-          <a href="{{ .Permalink }}">{{ .Title }}&ensp;&rArr;</a>
-        {{ end }}
-      </div>
-    </div>
-    <div class="p-4"></div>
-  </div>
-  <div id="toc" class="" style="width: 20%">
-    <div class="mr-3 pt-5 ml-3" style="position: sticky; top: 105px">
-      <div class="ml-auto mb-1">
-        {{ with .NextInSection }}
-          <a href="{{ .Permalink }}">{{ .Title }}&ensp;&rArr;</a>
-        {{ end }}
-      </div>
-      <div class="mr-auto mb-3">
-        {{ with .PrevInSection }}
-          <a href="{{ .Permalink }}">&lArr;&ensp;{{ .Title }}</a>
-        {{ end }}
-      </div>
 
-      <h5 class="h5 text-monospace font-weight-bold mb-1 pb-1 border-bottom">On this page</h5>
-      <ul class="toc list-unstyled"></ul>
-    </div>
-  </div>
+    <nav class="docs-pager" aria-label="Adjacent docs pages">
+      <div class="docs-pager-prev">
+        {{ with .PrevInSection }}
+          <a href="{{ .Permalink }}"><span class="docs-pager-label">&larr; previous</span><span class="docs-pager-title">{{ .Title }}</span></a>
+        {{ end }}
+      </div>
+      <div class="docs-pager-next">
+        {{ with .NextInSection }}
+          <a href="{{ .Permalink }}"><span class="docs-pager-label">next &rarr;</span><span class="docs-pager-title">{{ .Title }}</span></a>
+        {{ end }}
+      </div>
+    </nav>
+  </main>
+
+  <aside class="docs-toc" id="toc" aria-label="On this page">
+    <h2 class="docs-toc-title">On this page</h2>
+    <ul class="toc docs-toc-list"></ul>
+  </aside>
 </div>
 
 {{ partial "footer.html" . }}
-
-<!-- "In this page" table of contents -->
-<script>
-  const headers = [...document.querySelectorAll("h2, h3")].map(el => { return {
-    tag: el.tagName,
-    id: el.id,
-    text: el.textContent,
-  }});
-
-  const toc = [];
-
-  for (header of headers) {
-    switch (header.tag) {
-      case "H2":
-        toc.push({ text: header.text, id: header.id, list: [] });
-        break;
-      case "H3":
-        if (toc.length > 0) {
-          toc[toc.length - 1].list.push({ text: header.text, id: header.id });
-        }
-        break;
-    }
-  }
-
-  let tocHTML = "";
-
-  for (item of toc) {
-    if (item.list.length == 0) {
-      tocHTML += `
-        <li class="my-1">
-          <a href="#${item.id}" class="text-muted">${item.text}</a>
-        </li>
-      `;
-    } else {
-      let subHTML = "";
-      for (subitem of item.list) {
-        subHTML += `
-          <li>
-            <a href="#${subitem.id}" class="text-muted">${subitem.text}</a>
-          </li>
-        `;
-      }
-      tocHTML += `
-        <li class="my-1">
-          <a href="#${item.id}" class="text-muted">${item.text}</a>
-          <ul class="list-unstyled ml-2">
-            ${subHTML}
-          </ul>
-        </li>
-      `;
-    }
-  }
-
-  document.querySelector("#toc .toc").innerHTML = tocHTML;
-
-</script>

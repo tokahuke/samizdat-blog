@@ -15,9 +15,9 @@ This is a small, but important collection of caveats and potential pitfalls that
 
 ## JavaScript context sharing
 
-<div class="alert alert-primary">
+<aside class="note">
 Careful when storing data in the user's browser when using SAMIZDAT! Other pages in the network will have access to it if stored as plaintext. This is a known issue.
-</div>
+</aside>
 
 Browsers are very good at keeping data belonging to different sites separate in your computer. However, they operate using the standard rules of the Web, which are all based on location addressing. For them, a SAMIZDAT node appears as a single website and will therefore receive a _single_ context, independent of series, collection or object hash. This means that cookies, `localStorage` and even `sessionStorage` (any kind of storage, for that matter!) might be observed by other, potentially evil, people which are able to convince the poor user to load their page. Therefore, be mindful when storing sensitive information, such as passwords in the user's browser when using SAMIZDAT.
 

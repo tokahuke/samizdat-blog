@@ -1,26 +1,15 @@
 {{ partial "header.html" . }}
 
-<div id="content-container" class="d-flex">
-  <div id="content" class="w-50 pt-5 mb-5 mx-auto">
-    <section id="hero" class="d-flex py-5" style="flex-direction: column; align-items: center;">
-      <div class="pt-3"></div>
-    
-      {{ partial "icons/star-rate-primary.html" . }}
-    
-      <h1 class="text-monospace font-weight-bold pt-4">
-        {{ .Title }}
-      </h1>
-      <p class="pt-3 h4">
-        {{ .Description }}
-      </p>
-      
-    </section>
+<main id="main"><article class="mx-auto max-w-3xl px-6 pt-16 pb-24">
+  <header class="article-header">
+    <time class="eyebrow" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+  </header>
 
-    
-    <main style="padding-bottom: 25em" class="article-body">
-      {{ .Content }}
-    </main>
+  <div class="prose-samizdat">
+    {{ .Content }}
   </div>
-</div>
+</article></main>
 
 {{ partial "footer.html" . }}

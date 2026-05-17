@@ -1,21 +1,21 @@
-<footer class="border-top p-5 d-flex flex-direction-column" style="align-items: flex-start">
-  <a
-    class="ml-1 mr-5 mb-0 d-flex font-weight-bold text-monospace text-muted text-decoration-none"
-    style="align-items:center;"
-    href="/">
-    {{ partial "icons/star-rate.html" . }}
-    <span class="ml-1">SAMIZDAT</span>
-  </a>
-  <ul class="list-unstyled mr-auto">
-    <li><small><a class="text-muted" href="/">Home</a></small></li>
-    <li><small><a class="text-muted" href="/install">Install</a></small></li>
-    <li><small><a class="text-muted" href="/blog">Blog</a></small></li>
-    <li><small><a class="text-muted" href="/docs">Documentation</a></small></li>
-    <li><small><a class="text-muted" href="/about-us">About us</a></small></li>
-  </ul>
-  <small class="text-muted text-right">
-    Copyright ©2021 Tokahuke<br>
-    This page is licensed to you under the
-    <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a> license.
-  </small>
+<footer class="pb-10">
+  <hr class="ascii-rule" />
+  <div class="mx-auto max-w-6xl px-6 pt-6">
+    <div class="flex flex-wrap items-start justify-between gap-8">
+      {{ partial "brand.html" "sm" }}
+      <nav aria-label="Footer">
+        <ul class="m-0 flex list-none flex-col gap-1 p-0 text-sm">
+          <li><a class="link-nav" href="/">Home</a></li>
+          <li><a class="link-nav" href="/install/">Install</a></li>
+          <li><a class="link-nav" href="/blog/">Blog</a></li>
+          <li><a class="link-nav" href="/docs/">Documentation</a></li>
+          <li><a class="link-nav" href="/about-us/">About</a></li>
+        </ul>
+      </nav>
+      <small class="max-w-xs text-right text-sm opacity-60">
+        Copyright &copy;2021 Tokahuke. Licensed under the
+        <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPLv3</a>.
+      </small>
+    </div>
+  </div>
 </footer>

@@ -4,46 +4,19 @@ date: 2021-10-31T21:56:45-03:00
 type: bare
 ---
 
+# Donate for the cause
 
-<div class="d-flex align-items-center mb-5" style="flex-direction:column;">
+If you appreciate SAMIZDAT, would like to empower a freer Web and have some cash to spare...
 
-<section id="hero" class="d-flex w-50 py-5" style="flex-direction: column; align-items: center;">
-  <div class="pt-3"></div>
+> No, no PayPal, no Patreon, no VISA! These people are a pain. What? You thought I would create a tool for decentralized blogging and stuff and at the same time not want to have anything to do with cryptocurrencies? Think again!
 
-  {{< star >}}
-
-  <h1 class="text-monospace font-weight-bold pt-4">
-    Donate for the cause
-  </h1>
-  <p class="pt-3 h4 w-75 text-center">
-    If you appreciate SAMIZDAT, would like to empower a freer Web and have some cash to spare...
-  </p>
-  <div class="alert alert-info mt-4">
-    No, no PayPal, no Patreon, no VISA! These people are a pain. What? You thought I would create a tool for decentralized blogging and stuff and at the same time not want to have anything to do with cryptocurrencies? Think again! 
-  </div>
-</section>
-
-<main id="content" class="w-50">
-
-<p>If you support this work, consider donating using crypto, only crypto. If you would like to use other currencies, you are welcome to open an issue in <a href="https://github.com/tokahuke/samizdat">GitHub</a>. By now, the following addresses are supported:</p>
-
-
-<div class="d-flex mb-2">
-<div class="mx-auto">
+If you support this work, consider donating using crypto, only crypto. If you would like to use other currencies, you are welcome to open an issue in [GitHub](https://github.com/tokahuke/samizdat). By now, the following addresses are supported:
 
 | Currency | Address                                      |
 |----------|----------------------------------------------|
 | `ETH`    | `0xba89B660eB6f5D894830C9273a5Dfb8dDc170cff` |
 | `BTC`    | `bc1qseae89zr4z2lkl82nvvr6c9sl97agshapzeag5` |
 
-</div>
-</div>
+Your donations are greatly appreciated!
 
-<p>Your donations are greatly appreciated!</p>
-
-<p>If you are still weary of donating, consider having a look at our <a href="~/about-us">about us</a> and at the <a href="https://github.com/tokahuke/samizdat">project page</a> at GitHub. 
-</p>
-
-</main>
-
-</div>
+If you are still weary of donating, consider having a look at our [about us](~/about-us) and at the [project page](https://github.com/tokahuke/samizdat) at GitHub.

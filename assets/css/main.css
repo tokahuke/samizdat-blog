@@ -1,0 +1,762 @@
+@import "tailwindcss";
+
+@source "../../layouts";
+@source "../../content";
+
+@theme {
+  /* === Colors ===
+     Paper is a cool off-white. Ink is near-black (never pure).
+     Stamp is the single oxide-red accent. Reduced-opacity ink for hierarchy. */
+  --color-paper: #f7f5f0;
+  --color-paper-deep: #efece4;
+  --color-ink: #1a1a1a;
+  --color-ink-faded: rgb(26 26 26 / 0.7);
+  --color-ink-soft: rgb(26 26 26 / 0.5);
+  --color-stamp: #c8102e;
+
+  /* === Fonts ===
+     Geist Mono for display + body (one face, the optical-size variation
+     comes from weight/size in the scale). Special Elite is accent only
+     (eyebrows, .stamp). VT323 is reserved for block code. */
+  --font-display: "Geist Mono", ui-monospace, monospace;
+  --font-body: "Geist Mono", ui-monospace, monospace;
+  --font-accent: "Special Elite", ui-monospace, monospace;
+  --font-code: "JetBrains Mono", ui-monospace, monospace;
+
+  /* === Type scale (Perfect Fourth, base 17px) === */
+  --text-xs: 0.8125rem;       /* 13px */
+  --text-sm: 0.9375rem;       /* 15px */
+  --text-base: 1.0625rem;     /* 17px — base */
+  --text-lg: 1.1875rem;       /* 19px */
+  --text-xl: 1.375rem;        /* 22px */
+  --text-2xl: 1.625rem;       /* 26px */
+  --text-3xl: 2rem;           /* 32px */
+  --text-4xl: 2.625rem;       /* 42px */
+  --text-5xl: 3.5rem;         /* 56px */
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    line-height: 1.55;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body { min-height: 100vh; }
+
+  ::selection {
+    background: var(--color-stamp);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-stamp);
+    outline-offset: 3px;
+  }
+
+  /* Heading anchors scroll into view below the sticky header. */
+  :is(h1, h2, h3, h4, h5, h6)[id] { scroll-margin-top: 5rem; }
+
+  /* Eliminate 300ms double-tap delay on interactive elements. */
+  a, button, [role="button"], [role="tab"] { touch-action: manipulation; }
+
+  /* === Headings ===
+     Display font, balanced wrap, generous space before / tight space after. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 4vw + 1rem, 3.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-block: 0 0.75em;
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-block: 2.25em 0.5em;
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-block: 1.75em 0.4em;
+  }
+
+  h4 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-block: 1.5em 0.4em;
+  }
+
+  h5, h6 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-block: 1.25em 0.4em;
+  }
+
+  /* === Body === */
+  p {
+    text-wrap: pretty;
+    margin-block: 0 0.875em;
+  }
+
+  /* === Links ===
+     Underlined with a soft stamp-color underline that goes saturated on hover. */
+  a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: rgb(200 16 46 / 0.5);
+    transition: color 120ms ease, text-decoration-color 120ms ease;
+  }
+  a:hover {
+    color: var(--color-stamp);
+    text-decoration-color: var(--color-stamp);
+  }
+
+  /* === Code === */
+  code {
+    font-family: var(--font-code);
+    font-size: 0.92em;
+    padding: 0.05em 0.3em;
+    background: rgb(26 26 26 / 0.06);
+  }
+  pre {
+    font-family: var(--font-code);
+    background: #0c0c0c;
+    color: var(--color-paper);
+    border: 1px solid var(--color-ink);
+    padding: 1.125em 1.375em;
+    overflow-x: auto;
+    margin-block: 1.5em;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* === Numerics: tabular + slashed-zero in tables, time, and code === */
+  table, time, .tabular {
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+
+  em, i { font-style: italic; }
+  strong, b { font-weight: 600; }
+
+  /* === Inline emphasis ===
+     The original copy uses <u> to mark emphasized phrases. Render those
+     with a thick stamp-color underline — a samizdat highlight, not a
+     standard link underline. */
+  u {
+    text-decoration: underline;
+    text-decoration-color: var(--color-stamp);
+    text-decoration-thickness: 5px;
+    text-underline-offset: 0.18em;
+    text-decoration-skip-ink: none;
+  }
+}
+
+@layer components {
+  /* Skip-link: invisible until focused, then surfaces top-left.
+     Lets keyboard users bypass the header/nav. */
+  .skip-link {
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: -100px;
+    z-index: 100;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.5em 0.75em;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: inset-block-start 120ms ease;
+  }
+  .skip-link:focus { inset-block-start: 0.75rem; color: var(--color-paper); }
+
+  /* === Samizdat accents (used sparingly) === */
+
+  /* Eyebrow: small uppercase tag in Special Elite — accent typography.
+     Shared by .eyebrow, docs sidebar/TOC titles, docs pager label, post-list date. */
+  .eyebrow,
+  .docs-sidebar-title,
+  .docs-toc-title,
+  .docs-pager-label,
+  .post-list-date {
+    font-family: var(--font-accent);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-stamp);
+    line-height: 1.2;
+  }
+  .eyebrow { display: inline-block; }
+
+  /* Rubber stamp: angled, bordered, the loudest samizdat moment */
+  .stamp {
+    display: inline-block;
+    font-family: var(--font-accent);
+    font-size: var(--text-xs);
+    color: var(--color-stamp);
+    opacity: 0.85;
+    transform: rotate(-3deg);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 2px solid var(--color-stamp);
+    padding: 0.25em 0.7em;
+    line-height: 1.2;
+  }
+
+  /* === Site primitives === */
+
+  .btn-arrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-ink);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding: 0.25em 0;
+    margin-right: 1.5em;
+  }
+  .btn-arrow::before {
+    content: "› ";
+    color: var(--color-stamp);
+    font-weight: 700;
+  }
+  .btn-arrow:hover {
+    color: var(--color-stamp);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+
+  .link-nav {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    letter-spacing: -0.005em;
+  }
+  .link-nav:hover { color: var(--color-stamp); }
+  .link-nav[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-color: var(--color-stamp);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .brand:hover { color: var(--color-stamp); }
+  .brand .star { color: var(--color-stamp); }
+
+  /* === Homepage hero: split editorial layout ===
+     Image (Lissitzky's Red Wedge) on the left at natural aspect, text on
+     the right on paper. Stacks on tablet/mobile. */
+  .hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: 70vh;
+    border-block-end: 1px solid var(--color-ink);
+  }
+  @media (max-width: 64rem) {
+    .hero-split { grid-template-columns: 1fr; min-height: 0; }
+  }
+
+  .hero-image {
+    position: relative;
+    margin: 0;
+    background: var(--color-paper-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: clamp(2rem, 4vw, 4rem);
+    border-inline-end: 1px solid var(--color-ink);
+  }
+  /* Solid stamp-red corner mark — agit-prop "publication stamp" in the
+     upper-right of the image panel. One pure-red block on the page. */
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 4rem 4rem 0;
+    border-color: transparent var(--color-stamp) transparent transparent;
+  }
+  .hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  @media (max-width: 64rem) {
+    .hero-image {
+      border-inline-end: 0;
+      border-block-end: 1px solid var(--color-ink);
+      aspect-ratio: 4 / 3;
+    }
+    .hero-image::after { border-width: 0 3rem 3rem 0; }
+  }
+
+  .hero-text {
+    padding: clamp(2.5rem, 5vw, 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw + 0.5rem, 4.25rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    max-width: 13ch;
+    text-wrap: balance;
+    margin-block: 0;
+    color: var(--color-ink);
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-size: clamp(var(--text-lg), 1.6vw + 0.5rem, var(--text-2xl));
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--color-ink);
+    margin-block: 1.25rem 0;
+    max-width: 24ch;
+  }
+
+  .hero-lede {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.55;
+    color: var(--color-ink-faded);
+    max-width: 48ch;
+    margin-block: 1.5rem 0;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.25rem;
+    margin-block-start: 2rem;
+  }
+
+  .hero-footnote {
+    font-size: var(--text-xs);
+    color: var(--color-ink-soft);
+    max-width: 48ch;
+    margin-block: 1.25rem 0;
+  }
+
+  /* === Homepage sections === */
+  .section { padding-block: 5rem; }
+  .section-band { background: var(--color-paper-deep); }
+  .section-title {
+    margin-block-start: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* "How it works" — 3 numbered steps in a row, stacked on mobile. */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 3rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+  .steps > li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .steps p { margin: 0.5rem 0 0; line-height: 1.5; }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 5vw, 5rem);
+    font-weight: 700;
+    color: var(--color-stamp);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    flex-shrink: 0;
+  }
+  @media (max-width: 48rem) {
+    .steps { grid-template-columns: 1fr; gap: 1.75rem; }
+  }
+
+  /* Pull-quote sections — large headline + supporting paragraph. */
+  .pull-headline {
+    font-size: clamp(1.625rem, 2.5vw + 0.75rem, 2.25rem);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-block: 0;
+    text-wrap: balance;
+  }
+  .pull-body {
+    font-size: var(--text-lg);
+    line-height: 1.55;
+    color: var(--color-ink-faded);
+    margin-block: 1.25rem 0;
+  }
+
+  /* "The upside" — two-column asymmetric tiles. */
+  .upside-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+    gap: 3rem;
+    margin-block-start: 2.5rem;
+  }
+  .upside-grid h3 { margin-block-start: 0; }
+  @media (max-width: 48rem) {
+    .upside-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* Plain horizontal rule — used by footer.html and prose-samizdat. */
+  .ascii-rule {
+    border: 0;
+    border-block-start: 1px solid var(--color-ink-soft);
+    margin: 0;
+    height: 0;
+  }
+
+  /* === Long-form markdown body === */
+  .prose-samizdat {
+    max-width: 68ch;
+    font-size: var(--text-base);
+    line-height: 1.55;
+  }
+  .prose-samizdat ul, .prose-samizdat ol {
+    padding-inline-start: 1.5rem;
+    margin-block: 1em;
+  }
+  .prose-samizdat ul { list-style: none; padding-inline-start: 0; }
+  .prose-samizdat ul > li {
+    padding-inline-start: 1.5rem;
+    position: relative;
+  }
+  .prose-samizdat ul > li::before {
+    content: "—";
+    color: var(--color-stamp);
+    position: absolute;
+    inset-inline-start: 0;
+  }
+  .prose-samizdat ol { list-style: decimal; }
+  .prose-samizdat li { margin-block: 0.35em; }
+  .prose-samizdat blockquote {
+    border-inline-start: 3px solid var(--color-stamp);
+    padding-inline-start: 1.25em;
+    margin: 1.5em 0;
+    color: var(--color-ink-faded);
+    font-style: italic;
+    font-size: var(--text-xl);
+    line-height: 1.4;
+  }
+  .prose-samizdat table {
+    border-collapse: collapse;
+    margin-block: 1.75em;
+    font-size: var(--text-base);
+  }
+  .prose-samizdat th, .prose-samizdat td {
+    border: 1px solid var(--color-ink);
+    padding: 0.55em 0.8em;
+    text-align: left;
+  }
+  .prose-samizdat th {
+    background: rgb(26 26 26 / 0.06);
+    font-weight: 600;
+    font-family: var(--font-display);
+  }
+  .prose-samizdat hr {
+    border: 0;
+    border-block-start: 1px solid var(--color-ink-soft);
+    margin-block: 2.5em;
+  }
+
+  /* === Docs layout ===
+     Three-column grid: nav sidebar | content | on-this-page TOC.
+     Collapses gracefully on smaller screens. */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr) 14rem;
+    gap: 3rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  @media (max-width: 64rem) {
+    .docs-layout {
+      grid-template-columns: 14rem minmax(0, 1fr);
+    }
+    .docs-toc { display: none; }
+  }
+  @media (max-width: 48rem) {
+    .docs-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .docs-sidebar { position: static; }
+  }
+
+  /* Sidebar */
+  /* Sidebar + TOC: both sticky rails on the docs layout. */
+  .docs-sidebar, .docs-toc {
+    position: sticky;
+    top: 5rem;
+    align-self: start;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+  .docs-sidebar-title,
+  .docs-toc-title { margin-block: 0 1rem; }
+  .docs-menu, .docs-menu-sub {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .docs-menu-sub {
+    margin-block: 0.25rem 0.5rem;
+    padding-inline-start: 1rem;
+    border-inline-start: 1px solid var(--color-ink-soft);
+  }
+  .docs-menu-item {
+    margin-block: 0.35rem;
+  }
+  /* Sidebar links + TOC links share font + faded-ink + hover-stamp. */
+  .docs-menu-link, .docs-toc-list a {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-ink-faded);
+    text-decoration: none;
+    padding-block: 0.2em;
+    line-height: 1.4;
+  }
+  .docs-menu-link:hover, .docs-toc-list a:hover { color: var(--color-stamp); }
+  .docs-menu-link[aria-current="page"] {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .docs-menu-link[aria-current="page"]::before {
+    content: "› ";
+    color: var(--color-stamp);
+  }
+  .docs-menu-link--sub {
+    font-size: 0.875rem;
+  }
+
+  /* Main content area */
+  .docs-main { min-width: 0; }
+  .docs-content { max-width: 72ch; }
+
+  /* Pager */
+  .docs-pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-block-start: 4rem;
+    padding-block-start: 1.5rem;
+    border-block-start: 1px solid var(--color-ink-soft);
+  }
+  .docs-pager-prev, .docs-pager-next {
+    max-width: 18rem;
+  }
+  .docs-pager-next { text-align: right; margin-inline-start: auto; }
+  .docs-pager a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .docs-pager a:hover { color: var(--color-stamp); }
+  .docs-pager-title {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+
+  /* TOC (right column) */
+  .docs-toc-list, .docs-toc-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .docs-toc-list ul {
+    padding-inline-start: 0.875rem;
+    margin-block: 0.15rem 0.35rem;
+    border-inline-start: 1px solid var(--color-ink-soft);
+  }
+  .docs-toc-list li { margin-block: 0.2rem; }
+
+  /* === Page subtitle ===
+     Italic body, faded ink. Sits under page H1s. */
+  .page-subtitle {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-ink-faded);
+    margin-block: 0.25em 0;
+  }
+
+  /* === Blog post list === */
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .post-list-item {
+    margin-block: 2.5em;
+  }
+  .post-list-item:first-child { margin-block-start: 0; }
+  .post-list-date {
+    display: inline-block;
+    margin-block-end: 0.25em;
+  }
+  .post-list-title {
+    font-size: var(--text-xl);
+    line-height: 1.25;
+    margin-block: 0.1em 0.4em;
+  }
+  .post-list-title a {
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .post-list-title a:hover { color: var(--color-stamp); }
+  .post-list-desc {
+    color: var(--color-ink-faded);
+    margin: 0;
+  }
+
+  /* === Article header === */
+  .article-header {
+    margin-block-end: 3rem;
+  }
+  .article-header .eyebrow {
+    display: block;
+    margin-block-end: 0.5em;
+  }
+  .article-title {
+    margin-block: 0;
+  }
+
+  /* === Call-out note ===
+     Typed-memo box: left stamp-color rule, slight tint background.
+     Used inside markdown for warnings, caveats, license notices. */
+  .note {
+    border-inline-start: 3px solid var(--color-stamp);
+    background: rgb(200 16 46 / 0.06);
+    padding: 1em 1.25em;
+    margin-block: 1.5em;
+    font-size: var(--text-base);
+    line-height: 1.55;
+  }
+  .note > :first-child { margin-top: 0; }
+  .note > :last-child { margin-bottom: 0; }
+
+  /* === OS tabs (install page) ===
+     Three buttons in a row, panels switched via JS. */
+  .os-tabs {
+    margin-block: 1.5em 2em;
+  }
+  .os-tabs-nav {
+    display: flex;
+    gap: 0.5rem;
+    border-block-end: 1px solid var(--color-ink-soft);
+    margin-block-end: 1.5rem;
+  }
+  .tab-btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--color-ink-faded);
+    padding: 0.5em 0.75em;
+    margin-block-end: -1px;
+    cursor: pointer;
+    border-block-end: 2px solid transparent;
+  }
+  .tab-btn:hover { color: var(--color-stamp); }
+  .tab-btn.is-active {
+    color: var(--color-ink);
+    border-block-end-color: var(--color-stamp);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.is-active { display: block; }
+
+  /* === Code block with copy button ===
+     <pre> already styled at @layer base; this adds the copy affordance. */
+  .pre-container {
+    position: relative;
+    margin-block: 1.5em;
+  }
+  .pre-container pre { margin: 0; }
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    appearance: none;
+    background: rgb(247 245 240 / 0.1);
+    border: 1px solid rgb(247 245 240 / 0.25);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    padding: 0.25em 0.6em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 120ms ease;
+  }
+  .pre-container:hover .copy-btn,
+  .pre-container:focus-within .copy-btn,
+  .copy-btn:focus-visible { opacity: 1; }
+  .copy-btn:hover { background: rgb(247 245 240 / 0.2); }
+}

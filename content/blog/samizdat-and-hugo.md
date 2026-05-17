@@ -58,9 +58,9 @@ title = 'My New Hugo Site'
 theme = "archie"
 ```
 
-<div class="alert alert-info mt-4">
-    The <code>baseURL</code> property for a Samizdat site should always be <code>~</code>. For more information on what that means, see <a href="~/docs/developing-with-samizdat/directory-structure/">here</a>.
-</div>
+<aside class="note">
+The <code>baseURL</code> property for a Samizdat site should always be <code>~</code>. For more information on what that means, see <a href="~/docs/developing-with-samizdat/directory-structure/">here</a>.
+</aside>
 
 Now, we are ready to _actually_ add some content. In hugo, content goes into the `content` folder. Let's create a blog post, then! Copy the following (rather terse) blog to `content/posts/my-post.md`:
 ```markdown

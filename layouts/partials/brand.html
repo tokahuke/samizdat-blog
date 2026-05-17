@@ -1,0 +1,6 @@
+{{/* Site brand mark. Arg: "lg" (header default) or "sm" (footer). */}}
+{{ $size := . | default "lg" }}
+<a href="/" class="brand {{ if eq $size "sm" }}text-lg{{ else }}text-xl{{ end }}">
+  <span class="star">{{ partial "icons/star.html" . }}</span>
+  <span>SAMIZDAT</span>
+</a>

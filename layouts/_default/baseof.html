@@ -3,29 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+    <meta name="theme-color" content="#f7f5f0" />
+
     <link rel="icon" href="/favicon.svg" />
     <link rel="canonical" href="{{ .Permalink }}" />
-    <meta name="description" content="{{ .Params.tags.description }}" />
-    <meta property="og:title" content="{{ .Params.tags.og_title }}" />
-    <meta property="og:type" content="{{ .Params.tags.og_type }}" />
-    <meta property="og:url" content="{{ .Params.tags.og_url }}" />
-    <meta property="og:image" content="{{ .Params.tags.og_image }}" />
-    <meta property="og:description" content="{{ .Params.tags.og_description }}" />
-    <meta name="twitter:card" content="{{ .Params.tags.twitter_card }}" />
-    <meta name="twitter:site" content="{{ .Params.tags.twitter_site }}" />
-    <meta name="twitter:creator" content="{{ .Params.tags.twitter_creator }}" />
+    {{ with .Params.tags }}
+      {{ with .description }}<meta name="description" content="{{ . }}" />{{ end }}
+      {{ with .og_title }}<meta property="og:title" content="{{ . }}" />{{ end }}
+      {{ with .og_type }}<meta property="og:type" content="{{ . }}" />{{ end }}
+      {{ with .og_url }}<meta property="og:url" content="{{ . }}" />{{ end }}
+      {{ with .og_image }}<meta property="og:image" content="{{ . }}" />{{ end }}
+      {{ with .og_description }}<meta property="og:description" content="{{ . }}" />{{ end }}
+      {{ with .twitter_card }}<meta name="twitter:card" content="{{ . }}" />{{ end }}
+      {{ with .twitter_site }}<meta name="twitter:site" content="{{ . }}" />{{ end }}
+      {{ with .twitter_creator }}<meta name="twitter:creator" content="{{ . }}" />{{ end }}
+    {{ end }}
 
     <title>{{ .Title }}</title>
 
-    {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
-    <script src="~/samizdat.js"></script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Special+Elite&display=swap"
+    />
+
+    {{ $css := resources.Get "css/main.css" | css.TailwindCSS (dict "minify" true) | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+
+    <script src="~/samizdat.js" defer></script>
+
     {{ block "head" . }}{{ end }}
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     {{ block "body" . }}{{ end }}
-    {{ block "scripts" .}}{{ end }}
+
+    <script>
+      window.__samizdatPublicKey = "{{ .Site.Params.samizdatPublicKey }}";
+    </script>
+    {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
   </body>
 </html>
