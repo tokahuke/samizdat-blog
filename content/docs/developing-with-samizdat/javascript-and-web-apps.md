@@ -21,7 +21,7 @@ Careful when storing data in the user's browser when using SAMIZDAT! Other pages
 
 Browsers are very good at keeping data belonging to different sites separate in your computer. However, they operate using the standard rules of the Web, which are all based on location addressing. For them, a SAMIZDAT node appears as a single website and will therefore receive a _single_ context, independent of series, collection or object hash. This means that cookies, `localStorage` and even `sessionStorage` (any kind of storage, for that matter!) might be observed by other, potentially evil, people which are able to convince the poor user to load their page. Therefore, avoid storing _any kind_ of sensitive information on _any kind_ of browser storage when using SAMIZDAT. Everybody will be able to see it.
 
-But fear not! This does not mean that you are limited only to _stateless_ pages when developing for SAMIZDAT. In fact, SAMIZDAT offers its very own KVStore API, which is available on all pages and works almost exactly like `localStorage` (except its API is `async`). This API, unlike browser storages, does understand how SAMIZDAT works and is able to keep contexts separate. See the [KVStore](#kvstore) session below for a primer on this API.
+But fear not! This does not mean that you are limited only to _stateless_ pages when developing for SAMIZDAT. In fact, SAMIZDAT offers its very own KVStore API, which is available on all pages and works almost exactly like `localStorage` (except its API is `async`). This API, unlike browser storages, does understand how SAMIZDAT works and is able to keep contexts separate. See the [KVStore](#kvstore) section below for a primer on this API.
 
 
 ## SamizdatJS
@@ -36,14 +36,14 @@ npm install samizdat-js
 <!-- ... or ... -->
 <script src="/_series/{{< get_samizdat_public_key >}}/samizdat.js"></script>
 ```
-This script loads a class in you `window` object called `Samizdat`, which is the class of SAMIZDAT clients. To instantiate a client, you must call its constructor in one of the two following fashions:
+This script loads a class in your `window` object called `Samizdat`, which is the class of SAMIZDAT clients. To instantiate a client, you must call its constructor in one of the two following fashions:
 ```js
 // For access to the public APIs only.
 const sz = new Samizdat();
 // For authenticated access to the private APIs (in this case, "ManageObjects").
 const sz = new Samizdat(["ManageObjects"]);
 ```
-In the next sessions, we will discuss about the public API, the private API as well as how to ask the user for consent to use the private API.
+In the next sections, we will discuss the public API, the private API as well as how to ask the user for consent to use the private API.
 
 <aside class="note">
 <code>SamizdatJS</code> is available for you to fiddle with in this page (if you are not sitting behind a SAMIZDAT proxy). Feel welcome to hit <code>Ctrl+Shift+I</code> and give it a go in your browser's console.
@@ -75,7 +75,7 @@ sz.kvstore.put("foo", "bar");
 // ... in page /_series/PUBLIC_KEY_B/foo.html one still gets:
 const equalsNull = await sz.kvstore.get("foo"); // null!
 ```
-The SAMIZDAT context is defined by entity (series, collection or object) and each context is its own thing. For example, event if series A has an edition hash A<sub>n</sub>, pages `/_series/A/foo.html` and `/_collections/A_n/foo.html` do not share each others values. It is as if they were seen as different sites (origins) by the browser. 
+The SAMIZDAT context is defined by entity (series, collection or object) and each context is its own thing. For example, even if series A has an edition hash A<sub>n</sub>, pages `/_series/A/foo.html` and `/_collections/A_n/foo.html` do not share each other's values. It is as if they were seen as different sites (origins) by the browser. 
 
 ### Fetching data
 
@@ -94,7 +94,7 @@ Any page that can be accessed by any means using the browser navigation tab can 
 
 ## Authenticating with the SAMIZDAT node
 
-In order to access more private user data, such as series private keys, you need to authenticate your entity with the user's local SAMIZDAT node. Similarly to OAuth or SSO logins, this requires the user's input in a separate popup page. Fortunately, SamizdatJS already handles the whole authentication flow seamlessly for the programmer. If the page is note already authorized, it will do so automatically at the first private API call.
+In order to access more private user data, such as series private keys, you need to authenticate your entity with the user's local SAMIZDAT node. Similarly to OAuth or SSO logins, this requires the user's input in a separate popup page. Fortunately, SamizdatJS already handles the whole authentication flow seamlessly for the programmer. If the page is not already authorized, it will do so automatically at the first private API call.
 
 To ask for access to the private APIs, just pass the list of desired access rights to the `Samizdat` class constructor:
 ```js
@@ -113,7 +113,7 @@ Here is the list of access rights that can be asked from the user:
 - `ManageObjects`: Manage local objects, including uploading new objects and deleting existing ones.
 - `GetObjectStats`: Get statistics on object use and user behavior.
 - `ManageBookmarks`: Manage bookmarks.
-- `ManageCollections`: Manage local objects, including uploading whole new collections.
+- `ManageCollections`: Manage local collections, including uploading whole new collections.
 - `ManageSeries`: Manage locally owned series, including reading private keys and uploading new editions.
 - `ManageSubscriptions`: Manage subscriptions to series.
 - `ManageIdentities`: Manage locally stored identities.
@@ -126,12 +126,12 @@ This is a whirlwind tour of the SAMIZDAT private APIs. It follows a basic CRUD p
 
 Even though every time a page is loaded from the network into the SAMIZDAT node a local object is created, _uploading_ a brand new object is a private operation sitting behind the `ManageObjects` access right. This is done to avoid pages from spamming users with unwanted programmatic content. The same thing goes for deleting objects, just the other way around: it is done to avoid pages from competitively deleting each other's local copies, thus hindering content dissemination. 
 
-Once you instantiate a `Samizdat` client with the `ManageObjects` access right, you can easily upload a new object as JavaScript `Blob` to the local node:
+Once you instantiate a `Samizdat` client with the `ManageObjects` access right, you can easily upload a new object as a JavaScript `Blob` to the local node:
 ```typescript
 const myObject = new Blob(["Hello, World"], {"content-type": "text/plain"});
 const hash: string = await sz.postObject(myObject);
 ```
-Similarly, you can delete an object by its hash (it it exists):
+Similarly, you can delete an object by its hash (if it exists):
 ```typescript
 await sz.deleteObject("W9SwR5fPfPNRP684PUPPBtWCZsr6djnOUWPgOg");
 ``` 
@@ -160,14 +160,14 @@ Because of the way SAMIZDAT is implemented, there is no `deleteCollection` (by n
 
 ### Series
 
-Series (owners) are public cryptography keypairs that he local user has. With the `ManageSeries` access rights, you can create, read and delete these keypairs. This is a great responsibility, since the private part of the keypair is very sensible information!
+Series (owners) are public cryptography keypairs that the local user has. With the `ManageSeries` access rights, you can create, read and delete these keypairs. This is a great responsibility, since the private part of the keypair is very sensitive information!
 
 To create a new series owner with label `mySeries`, just run
 ```typescript
 const series = await sz.postSeriesOwner("mySeries");
 ```
 
-To list, one or all local series owners, you can use
+To list one or all local series owners, you can use
 ```typescript
 // For a particular series owner:
 const series = await sz.getSeriesOwner("mySeries");

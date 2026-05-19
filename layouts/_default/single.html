@@ -5,7 +5,8 @@
 {{ define "body" }}
   {{ if eq .Params.type "bare" }}
     {{ partial "header.html" . }}
-    <main id="main" class="prose-samizdat mx-auto max-w-3xl px-6 pt-16 pb-24">
+    {{ $maxw := cond .Params.wide "max-w-5xl" "max-w-3xl" }}
+    <main id="main" class="prose-samizdat {{ if .Params.wide }}is-wide {{ end }}mx-auto {{ $maxw }} px-6 pt-16 pb-24">
       {{ .Content }}
     </main>
     {{ partial "footer.html" . }}

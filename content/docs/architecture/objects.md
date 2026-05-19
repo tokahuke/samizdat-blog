@@ -11,7 +11,7 @@ menu:
 
 # Objects
 
-Objects for the basis of how content is structure in the SAMIZDAT network. Simply speaking, an object corresponds to a file, a chunk of binary data, such as a web page, an image or a video. However, differently from the files in your computer, objects don't have names. Instead, an object is uniquely identifiable by a _hash_ value, a string of random data. Since we use a decent hashing algorithm (SHA3, 224 bits), it's impossible for someone to guess _anything_ about the nature of the object by its hash or purposefully create two objects with the same hash. In this page, we explain how objects are managed by SAMIZDAT.
+Objects form the basis of how content is structured in the SAMIZDAT network. Simply speaking, an object corresponds to a file, a chunk of binary data, such as a web page, an image or a video. However, differently from the files in your computer, objects don't have names. Instead, an object is uniquely identifiable by a _hash_ value, a string of random data. Since we use a decent hashing algorithm (SHA3, 224 bits), it's impossible for someone to guess _anything_ about the nature of the object by its hash or purposefully create two objects with the same hash. In this page, we explain how objects are managed by SAMIZDAT.
 
 ## Object structure format
 

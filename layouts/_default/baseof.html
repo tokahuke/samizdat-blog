@@ -19,7 +19,7 @@
       {{ with .twitter_creator }}<meta name="twitter:creator" content="{{ . }}" />{{ end }}
     {{ end }}
 
-    <title>{{ .Title }}</title>
+    <title>{{ .Title | plainify }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

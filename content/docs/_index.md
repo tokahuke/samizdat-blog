@@ -21,9 +21,9 @@ with surfing this extension of the Web as well as developing for it. If you
 just want to have a quick look to learn how to use SAMIZDAT in your day-to-day
 life, [getting started](docs/getting-started) is all that you will ever need.
 However, if you wish to create, publish and manage your own content in the
-network (e.g, create a personal blog), please keep reasing further about
+network (e.g, create a personal blog), please keep reading further about
 [developing with SAMIZDAT](/docs/developing-with-samizdat). Finally, if you
-want to delve deeper on the nitty-gritty details of how SAMZIDAT works, the
+want to delve deeper on the nitty-gritty details of how SAMIZDAT works, the
 section on [architecture](/docs/architecture) is for you.
 
 Enjoy!

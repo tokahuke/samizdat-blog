@@ -6,9 +6,9 @@ type: bare
 
 # About us
 
-SAMIZDAT is a free software initiative from me, [a guy you just met in the Internet](https://github.com/tokahuke) and some more helpful folks you have not met yet, but are as important. I am of course talking about the contributors to the project. Do you want to join the cause? Anyone is welcome, as long as you keep the conversation civil. Go to the [project page on GitHub](https://github.com/tokahuke/samizdat) and have a look around. There is plenty to be done!
+SAMIZDAT is a free software initiative from me, [a guy you just met on the Internet](https://github.com/tokahuke) and some more helpful folks you have not met yet, but are as important. I am of course talking about the contributors to the project. Do you want to join the cause? Anyone is welcome, as long as you keep the conversation civil. Go to the [project page on GitHub](https://github.com/tokahuke/samizdat) and have a look around. There is plenty to be done!
 
-No idea how to code? No problem! You can also [donate some crypto](~/donate) to be used in the project. After all, we do have a small server which we need to keep running to bootstrap to project and with your support we can lure developers to work for the project with the sweet scent of cash.
+No idea how to code? No problem! You can also [donate some crypto](/donate/) to be used in the project. After all, we do have a small server which we need to keep running to bootstrap the project and with your support we can lure developers to work for the project with the sweet scent of cash.
 
 ## User privacy
 

@@ -11,7 +11,7 @@ menu:
 
 # Security considerations
 
-This is a small, but important collection of caveats and potential pitfalls that you will have to keep in mind when developing Web applications for SAMIZDAT. These apply mostly to rich statefull applications; if all you want is to deploy is your personal blog, just don't accidentally commit your bank details to the network and you should be fine. 
+This is a small, but important collection of caveats and potential pitfalls that you will have to keep in mind when developing Web applications for SAMIZDAT. These apply mostly to rich stateful applications; if all you want is to deploy is your personal blog, just don't accidentally commit your bank details to the network and you should be fine. 
 
 ## JavaScript context sharing
 
@@ -23,4 +23,4 @@ Browsers are very good at keeping data belonging to different sites separate in 
 
 ## SAMIZDAT is public by default
 
-Even though, only those who have access to a certain SAMIZDAT link are able to access that link, there is no such thing as a _private_ or members only area. Other than discretion and obscruty (i.e., _not_ sharng the link), there are no other access control mechanisms in place. If you want a private area, you will have to roll out your own. You might even use standard Web architecture for this (i.e., create an authentication server). SAMIZDAT is not the best solution for all usecases, far from that.
+Even though, only those who have access to a certain SAMIZDAT link are able to access that link, there is no such thing as a _private_ or members-only area. Other than discretion and obscurity (i.e., _not_ sharing the link), there are no other access control mechanisms in place. If you want a private area, you will have to roll out your own. You might even use standard Web architecture for this (i.e., create an authentication server). SAMIZDAT is not the best solution for all usecases, far from that.

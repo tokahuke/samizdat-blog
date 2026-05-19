@@ -9,3 +9,5 @@ title = 'Samizdat: Your content, available'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    noClasses = false

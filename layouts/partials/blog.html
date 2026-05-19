@@ -1,16 +1,16 @@
 {{ partial "header.html" . }}
 
 <main id="main" class="mx-auto max-w-3xl px-6 pt-16 pb-24">
-  <header class="mb-16">
-    <h1>The SAMIZDAT SYSTEM Blog</h1>
-    <p class="page-subtitle">News from the front.</p>
+  <header class="page-hero">
+    <h1>The SAMIZDAT SYSTEM <u>Blog</u></h1>
+    <p>News from the front.</p>
   </header>
 
   <ul class="post-list">
     {{ range .Pages.Reverse }}
       <li class="post-list-item">
         <time class="post-list-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-        <h2 class="post-list-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <h2 class="post-list-title"><a href="{{ .Permalink }}">{{ .Title | safeHTML }}</a></h2>
         {{ with .Description }}<p class="post-list-desc">{{ . }}</p>{{ end }}
       </li>
     {{ end }}

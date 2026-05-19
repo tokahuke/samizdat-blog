@@ -4,7 +4,13 @@ date: 2021-10-31T21:56:45-03:00
 type: bare
 ---
 
-# Donate for the cause
+<header class="page-hero">
+
+# <u>Donate</u> for the cause
+
+No PayPal. No Patreon. No VISA.
+
+</header>
 
 If you appreciate SAMIZDAT, would like to empower a freer Web and have some cash to spare...
 
@@ -19,4 +25,4 @@ If you support this work, consider donating using crypto, only crypto. If you wo
 
 Your donations are greatly appreciated!
 
-If you are still weary of donating, consider having a look at our [about us](~/about-us) and at the [project page](https://github.com/tokahuke/samizdat) at GitHub.
+If you are still wary of donating, consider having a look at our [about us](/about-us/) and at the [project page](https://github.com/tokahuke/samizdat) at GitHub.

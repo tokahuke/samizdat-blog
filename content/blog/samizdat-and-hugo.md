@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: make a website with Samizdat and Hugo"
+title: "Tutorial: make a website with <u>Samizdat</u> and Hugo"
 date: 2021-10-29T21:34:22-03:00
 type: article
 description: Learn how to deploy a static website to the Samizdat Network
@@ -9,7 +9,7 @@ So, let's build a site with Samizdat. Yes, Samizdat already lets you do that! No
 
 To help us in our journey, we will use a nifty little tool called [Hugo](https://gohugo.io/), a static website generator (actually, one of the most popular ones). So, if you don't have Hugo yet, [go get Hugo](https://gohugo.io/installation/) now and then come back here! Hugo, when you boil it down to the basics, is a program that takes a bunch of [Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) files and builds all the pages of your blog from them, adding style and structure along the way. The result is, unfortunately, just a folder full of HTML files.
 
-To create an actual website out of this, you would upload this file to [_someone_](https://netlify.com) and this _someone_ would run a program that distributes your HTML pages to whole world via a _protocol_, called HTTP. This is the usual way we do it nowadays, at least. With SAMIZDAT, things are different. You just _export_ your files to your local Samizdat client and the Samizdat network does the rest for you. Of course, there is no magic trick here. If _nobody_ is actively waiting for your files and you just shut down your computer, your content will be utterly unavailable. But this is a story for another time; we are getting way ahead of ourselves here!
+To create an actual website out of this, you would upload this file to [_someone_](https://netlify.com) and this _someone_ would run a program that distributes your HTML pages to the whole world via a _protocol_, called HTTP. This is the usual way we do it nowadays, at least. With SAMIZDAT, things are different. You just _export_ your files to your local Samizdat client and the Samizdat network does the rest for you. Of course, there is no magic trick here. If _nobody_ is actively waiting for your files and you just shut down your computer, your content will be utterly unavailable. But this is a story for another time; we are getting way ahead of ourselves here!
 
 First, the basics.
 
@@ -42,7 +42,7 @@ As it states, this is the private key for your project. It is stored in `.Samizd
 
 ## Adding some content
 
-Hugo deserves a tutorial on its own and indeed there is [one](https://gohugo.io/getting-started/quick-start/) readily available with much more detail that I can provide here. Since the objective of this tutorial is not to create a beatiful new Hugo site, let's do it the quick-and-dirty way, skipping all the fancy bells and whistles and keeping to the bare minimum.
+Hugo deserves a tutorial on its own and indeed there is [one](https://gohugo.io/getting-started/quick-start/) readily available with much more detail that I can provide here. Since the objective of this tutorial is not to create a beautiful new Hugo site, let's do it the quick-and-dirty way, skipping all the fancy bells and whistles and keeping to the bare minimum.
 
 First, we need to get a _theme_ for Hugo to work. There are plenty of flashy and fancy themes out there, but we will use Archie for our project. To get Archie, just run the following code:
 ```sh
@@ -75,11 +75,11 @@ We all love dear leader [Pooh][1]! May his pot be ever full of "hunny".
 [1]: https://en.wikipedia.org/wiki/Censorship_of_Winnie-the-Pooh_in_China
 ```
 
-To see that everything is working as expected, run `hugo serve` and check if you see a barebones homepage with link to our post.
+To see that everything is working as expected, run `hugo serve` and check if you see a barebones homepage with a link to our post.
 
 ## Interactive build with `samizdat watch`
 
-Samizdat can deploy your content in your local client for you to play around before commiting your content to the network. As seen above, Hugo also has such capability with `hugo serve`, but it will serve via vanilla HTTP; it has no knowledge of all this Samizdat thingamajig. Since we need to know how our content will work as part of the Samizdat network (which is ever so slightly different from vanilla HTTP), it's no good to us. Therefore, we need to use the subcommand `samizdat watch`.
+Samizdat can deploy your content in your local client for you to play around before committing your content to the network. As seen above, Hugo also has such capability with `hugo serve`, but it will serve via vanilla HTTP; it has no knowledge of all this Samizdat thingamajig. Since we need to know how our content will work as part of the Samizdat network (which is ever so slightly different from vanilla HTTP), it's no good to us. Therefore, we need to use the subcommand `samizdat watch`.
 
 This subcommand runs continuously waiting for changes in the project folder and, when it finds one, triggers a build command that will create a new version of the website. The source folder for the rendered pages as well as the build command are configured in `Samizdat.toml`, in the `[build]` section. Since Hugo by default outputs all pages and files to a folder called `public`, our `[build]` section should look something like this:
 ```toml

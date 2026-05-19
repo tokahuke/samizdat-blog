@@ -31,35 +31,27 @@ function rewriteHasOriginLinks() {
   });
 }
 
-// Install-page OS tabs: detect platform, activate the matching tab,
-// wire click + arrow-key navigation. Linux is the fallback when detection fails.
-function initOsTabs() {
-  const buttons = Array.from(document.querySelectorAll(".os-tabs .tab-btn"));
-  const panels = Array.from(document.querySelectorAll(".os-tabs .tab-panel"));
-  if (!buttons.length) return;
+// Shared tab activation: flips aria + .is-active on the matching button
+// and panel in the given button/panel arrays.
+function activateTabIn(buttons, panels, button, opts = {}) {
+  const panelSelector = button.getAttribute("data-target");
+  const panel = panelSelector ? document.querySelector(panelSelector) : null;
+  if (!panel) return;
+  buttons.forEach((b) => {
+    const isActive = b === button;
+    b.classList.toggle("is-active", isActive);
+    b.setAttribute("aria-selected", String(isActive));
+    b.tabIndex = isActive ? 0 : -1;
+  });
+  panels.forEach((p) => p.classList.toggle("is-active", p === panel));
+  if (opts.focus) button.focus();
+  if (opts.onChange) opts.onChange(button);
+}
 
-  function activate(button, { focus = false } = {}) {
-    const panel = document.querySelector(button.getAttribute("data-target"));
-    if (!panel) return;
-    buttons.forEach((b) => {
-      const isActive = b === button;
-      b.classList.toggle("is-active", isActive);
-      b.setAttribute("aria-selected", String(isActive));
-      b.tabIndex = isActive ? 0 : -1;
-    });
-    panels.forEach((p) => p.classList.toggle("is-active", p === panel));
-    if (focus) button.focus();
-  }
-
-  let os = "linux";
-  const ua = navigator.userAgent;
-  if (/Win/i.test(ua)) os = "windows";
-  else if (/Mac/i.test(ua)) os = "macos";
-
-  activate(document.querySelector(`#btn-${os}`) || buttons[0]);
-
+// Arrow-key + Home/End navigation for a tablist's buttons.
+function wireTabKeyboard(buttons, activateFn) {
   buttons.forEach((b, i) => {
-    b.addEventListener("click", () => activate(b));
+    b.addEventListener("click", () => activateFn(b));
     b.addEventListener("keydown", (e) => {
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight" && e.key !== "Home" && e.key !== "End") return;
       e.preventDefault();
@@ -68,8 +60,64 @@ function initOsTabs() {
       else if (e.key === "ArrowRight") next = (i + 1) % buttons.length;
       else if (e.key === "Home") next = 0;
       else if (e.key === "End") next = buttons.length - 1;
-      activate(buttons[next], { focus: true });
+      activateFn(buttons[next], { focus: true });
     });
+  });
+}
+
+// Install-page OS tabs: detect platform, activate the matching tab,
+// wire click + arrow-key navigation. Linux is the fallback when detection fails.
+// Scopes to each .os-tabs container so multiple instances on a page work.
+function initOsTabs() {
+  document.querySelectorAll(".os-tabs").forEach((container) => {
+    const buttons = Array.from(container.querySelectorAll(".tab-btn"));
+    const panels = Array.from(container.querySelectorAll(".tab-panel"));
+    if (!buttons.length) return;
+
+    let os = "linux";
+    const ua = navigator.userAgent;
+    if (/Win/i.test(ua)) os = "windows";
+    else if (/Mac/i.test(ua)) os = "macos";
+
+    const activate = (btn, opts) => activateTabIn(buttons, panels, btn, opts);
+    activate(container.querySelector(`#btn-${os}`) || buttons[0]);
+    wireTabKeyboard(buttons, activate);
+  });
+}
+
+// Install-page audience tabs: "Use it" / "Run a hub" / "Run a proxy".
+// Active tab is reflected in the URL hash so install paths are deep-linkable
+// (e.g. /install/#run-a-hub). The hash is updated on tab change and the
+// page reacts to hashchange events (back-button, manual edit).
+function initRoleTabs() {
+  const container = document.querySelector(".role-tabs");
+  if (!container) return;
+  const buttons = Array.from(container.querySelectorAll(".role-tabs-nav .tab-btn"));
+  const panels = Array.from(container.querySelectorAll(":scope > .role-tabs-panels > .tab-panel"));
+  if (!buttons.length) return;
+
+  const pickFromHash = () => {
+    const hash = location.hash.slice(1);
+    return hash ? container.querySelector(`#btn-${CSS.escape(hash)}`) : null;
+  };
+
+  const activate = (btn, opts = {}) =>
+    activateTabIn(buttons, panels, btn, {
+      ...opts,
+      onChange: (b) => {
+        const id = b.id.replace(/^btn-/, "");
+        if (location.hash.slice(1) !== id) {
+          history.replaceState(null, "", "#" + id);
+        }
+      },
+    });
+
+  activate(pickFromHash() || buttons[0]);
+  wireTabKeyboard(buttons, activate);
+
+  window.addEventListener("hashchange", () => {
+    const btn = pickFromHash();
+    if (btn) activate(btn);
   });
 }
 
@@ -93,6 +141,31 @@ function initCopyButtons() {
       }
     });
   });
+}
+
+// Homepage network-status chip: detects whether the reader is on a Samizdat
+// node serving natively or on an HTTP proxy, and reflects that in the chip.
+// Native paths look like /_series/<pubkey>/...; everything else is a proxy.
+function initNetworkStatus() {
+  const el = document.querySelector("[data-network-status]");
+  if (!el) return;
+
+  const mode = el.querySelector("[data-network-mode]");
+  const host = el.querySelector("[data-network-host]");
+  if (!mode || !host) return;
+
+  const isNative = window.location.pathname.startsWith("/_series/");
+  const pubkey = window.__samizdatPublicKey;
+
+  if (isNative && pubkey) {
+    el.dataset.networkState = "native";
+    mode.textContent = "NATIVE";
+    host.textContent = pubkey.slice(0, 12) + "…";
+  } else {
+    el.dataset.networkState = "proxy";
+    mode.textContent = "PROXY";
+    host.textContent = window.location.host || "…";
+  }
 }
 
 // Build the "On this page" TOC inside #toc .toc from H2/H3s in .docs-content.
@@ -144,6 +217,8 @@ function initDocsToc() {
 substituteTemplateOrigin();
 rewriteSamizdatLinks();
 rewriteHasOriginLinks();
+initRoleTabs();
 initOsTabs();
 initCopyButtons();
+initNetworkStatus();
 initDocsToc();

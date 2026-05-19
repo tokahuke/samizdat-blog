@@ -13,6 +13,6 @@ So, you want to create your own site (or webapp) running on SAMIZDAT? Welcome ab
 
 ## Who this section is (and isn't) for?
 
-This section is mainly intended for those who have at least some experience developing web pages, or are willing to take necessary the time to acquire this experience. I assume you have some familiarity with the command line, with web development tools such as `npm` and `webpack` and with the combo HTML/JavaScript/CSS.
+This section is mainly intended for those who have at least some experience developing web pages, or are willing to take the necessary time to acquire this experience. I assume you have some familiarity with the command line, with web development tools such as `npm` and `webpack` and with the combo HTML/JavaScript/CSS.
 
-If you are looking for a Content Management System (CMS), such as WordPress, I am sorry to inform you that SAMIZDAT is still too young and nobody has taken the time to build one such system for it... yet! It's not a technology problem; it's a peoples problem.
+If you are looking for a Content Management System (CMS), such as WordPress, I am sorry to inform you that SAMIZDAT is still too young and nobody has taken the time to build one such system for it... yet! It's not a technology problem; it's a people problem.
