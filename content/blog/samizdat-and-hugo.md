@@ -14,6 +14,25 @@ To create an actual website out of this, you would upload this file to [_someone
 First, the basics.
 
 
+## Installing Samizdat
+
+Before we can publish anything, we need a Samizdat node running on
+the local machine and the `samizdat` CLI to drive it. The friendly path
+on macOS and Linux is:
+
+```sh
+brew install tokahuke/samizdat/samizdat
+sudo samizdat-up install node
+```
+
+The first command installs the `samizdat` and `samizdat-up` binaries.
+The second one uses `samizdat-up` to install `samizdat-node` as a
+system service (systemd on Linux, launchd on macOS), so the node comes
+up on boot and stays out of your way. Once that finishes, you can hit
+`http://localhost:4510/` in a browser and see your node's local
+landing page; if you do, you are ready to keep going.
+
+
 ## Setting up a new project
 
 Create a new folder in your computer in your favorite spot. Call it `singalong_blog`. Then, use your preferred command line interface and navigate to that folder. We are now ready to start.
@@ -91,4 +110,38 @@ base = "public"
 run = "rm -rf public && hugo"
 ```
 
-You may go ahead and substitute the default `[build]` section that was created by `samizdat init` and copy the one above in its place. 
+You may go ahead and substitute the default `[build]` section that was created by `samizdat init` and copy the one above in its place.
+
+While we are looking at `Samizdat.toml`: at the top of the file you
+will see `[series]` and `[debug]` blocks, each with a `nickname` key.
+That key is the **node-local** label your CLI uses to find the series
+on your own node; it has no meaning to anyone else on the network.
+What the network actually keys off is the `public-key` underneath it.
+If you have older docs or an older sample project that uses
+`name = "..."` instead of `nickname = "..."`, just rename the key;
+that is the only change.
+
+
+## Publishing
+
+With the build section wired up and `samizdat watch` happy, there are
+three commands you will use over and over for the rest of the project:
+
+* `samizdat watch` rebuilds and republishes to the `[debug]` series
+  every time a file changes. This is the develop-test loop. Editions
+  on the debug series are not announced to the rest of the network, so
+  drafts do not leak out, but you can still open them in your browser
+  via the debug series' own `_series/<key>/` URL on `localhost:4510`.
+* `samizdat commit` does the same thing as `watch` but one-shot: build
+  once, publish one debug edition, exit. Useful in scripts and CI.
+* `samizdat commit --release` is the real publish. It builds, then
+  signs and announces a fresh edition on the **public** `[series]`.
+  This one is irreversible: there is no "unrelease" button, and any
+  node that has already subscribed will pick the new edition up the
+  next time its hub broadcasts your announcement. Triple-check before
+  running it.
+
+A typical Hugo session looks like: kick off `samizdat watch`, leave it
+running in one terminal, edit posts in your editor, hit save, see the
+node automatically pick the rebuild up. When the site looks good, kill
+`watch` and run `samizdat commit --release` once.
