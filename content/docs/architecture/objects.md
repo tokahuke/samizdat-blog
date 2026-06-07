@@ -18,7 +18,7 @@ Objects form the basis of how content is structured in the SAMIZDAT network. Sim
 Objects are not the atomic unit of the SAMIZDAT network. Each object is further divided into smaller parts, called _chunks_. In fact, the object hash is not simply the hash of all the contents of the file, but the root hash of a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) made of all the chunks.
 
 Dividing an object in chunks has some neat advantages:
-1. Quicker transfer of data, just like Torrent does it. One does not even need to have the full object stored in order to serve it. Unfortunately, this is not yet implemented.
+1. Quicker transfer of data, just like Torrent does it. The node streams a collection's objects in parallel as their chunks arrive, so a page can start rendering before the last byte of any single asset has landed locally.
 2. Reuse of the same information across very similar objects. This allows for slightly more efficient storage in some cases.
 
 By default, each object chunk is sized at 256kB. However, chunks of arbitrary sizes are allowed in SAMIZDAT, even for the same object.
@@ -41,7 +41,17 @@ However, if the object is not found, the node will have to query the hubs it is 
 
 Enter riddles. Riddles in SAMIZDAT are the cryptographic equivalent of the kids game: instead of directly saying the object hash, we ask the question: "what is the piece of data that, combined with the random number X gives the hash Y?". If you know the piece of data (or happen to know it's in a small set of possibilities), it's easy to answer the riddle correctly. However, when you _don't_ have the riddle, you are left wondering.
 
-So how does this defeat the hypothetical big fat database of very naughty things? In the database, looking for a given hash is "easy" (O(log N), where N is the number of hashes). However, with riddles this operation becomes _hard_: the only way to find the hash is by trying to answer the riddle by brute force, testing the riddle on each hash, one by one (O(N)). It's actually even worse if you consider that riddles can be randomized (because of the random number it contains). The whole tedious testing job has to be repeated not by object hash, but _by riddle_. 
+So how does this defeat the hypothetical big fat database of very naughty things? In the database, looking for a given hash is "easy" (O(log N), where N is the number of hashes). However, with riddles this operation becomes _hard_: the only way to find the hash is by trying to answer the riddle by brute force, testing the riddle on each hash, one by one (O(N)). It's actually even worse if you consider that riddles can be randomized (because of the random number it contains). The whole tedious testing job has to be repeated not by object hash, but _by riddle_.
+
+There are two riddle variants used in different places in the protocol.
+A `MessageRiddle` extends the basic riddle with an AEAD-sealed payload
+keyed by the solution: anyone who can answer the riddle can decrypt the
+payload, which is how a hub delivers a candidate peer's IP address back
+to the asker without learning the IP itself. A `Hint` is an optional
+prefix of the solution that bounds the responder's search space; a
+longer hint resolves faster but leaks more about what the asker is
+looking for, so the protocol uses short hints only where the trade-off
+is justified.
 
 
 ## Methods on objects

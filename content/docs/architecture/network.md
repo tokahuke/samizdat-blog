@@ -18,11 +18,32 @@ Hubs are meant to run in the "open Internet" by more tech-savvy people or by a m
 
 ## The protocol stack
 
-### IPv6
+### IPv4 and IPv6
 
-As of now, the whole SAMIZDAT network runs on the IPv6 network _only_. This is a known issue that may be solved in the future, or not. As of 2021, IPv6 is well-supported by most ISPs around the world, even in developing countries, from which I write. Adoption is slow, but steady. The reason for preferring IPv6 over IPv4 is that the abundance of IPv6 simplifies the problems with NAT-traversal and (even worse) carrier grade NAT-traversal. With IPv4, it is just impossible for two computers in the same household (and with carrier-grade NAT, even in the same neighborhood) to connect to each other.
+The SAMIZDAT network supports both IPv4 and IPv6. The default
+hub-resolution mode is `UseBoth`: a node will accept and dial peers on
+whichever family the hub returns, with no operator configuration
+required. IPv6 is still the smoother path for residential connections
+behind carrier-grade NAT, where IPv4 addresses are scarce enough that
+two nodes in the same neighbourhood may not be able to reach each
+other directly, but the network as a whole no longer assumes IPv6 on
+either side of a connection.
 
-There are, of course many tricks one can use to circumvent these unfortunate hacks to the global Internet, from port scanning to STUN servers. However, I have not had the time to implement or hunt for a solution that implements this for me. Besides, these problems _do not exist_ in the IPv6 network, where addresses are plentiful. Therefore, out of simplicity, this has remained an "open issue". If you _only_ have an IPv4 connection, you can still use SAMIZDAT, since any decent OS in 2021 implements IPv6 tunneling over IPv4, at least until it reaches your WiFi antenna. You can discover if that is the case if your allotted IPv6 starts with `ffff:`. However, note that you may occasionally experience some bugs. 
+## Hub federation
+
+Hubs do not just talk to nodes; they also talk to each other. A hub
+configured with one or more partner hubs opens a node-style connection
+to each partner and behaves as if it were a node in the partner's
+network. The result is a **graph of hubs**: a query from a node can
+traverse several hubs before reaching the peer that actually holds the
+content.
+
+Recursion is bounded by a hop counter baked into the query itself.
+Each hop pops one riddle off the resolution; once the riddles run out
+the response is terminated. With the default of `6` riddles per query,
+the federation is naturally at most six hops deep before queries stop
+forwarding, which is plenty to traverse a tribe of hubs without ever
+needing a global routing table.
 
 
 ### UDP+QUIC
@@ -57,6 +78,10 @@ SAMIZDAT uses mainly three distinct ports for communication:
 * `4512/udp`: serves the _reverse_ RPC in the SAMIZDAT hub. The node may connect from any port, including from ephemeral ports.
 
 These are the ports to be understood when no port is specified in the context of each service.
+
+Fresh installs via `samizdat-up install node` automatically seed
+`testbed.hubfederation.com` as a default hub; no manual
+`samizdat hub new` is required to get on the network.
 
 
 ## Security
