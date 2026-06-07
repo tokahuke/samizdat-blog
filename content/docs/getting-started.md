@@ -106,7 +106,24 @@ The page you are accessing now is probably being accessed using a series. If not
 
 Note that the prefix now is `_series` instead of `_collections`. Now, the big blob of letters is a [public key](https://en.wikipedia.org/wiki/Public-key_cryptography) associated with the secret key used to sign new editions. This is (by now) the preferred way of retrieving content from the SAMIZDAT network and the one which will feel more familiar to most users.
 
-You might be wondering if it is possible to remove that last blob of letters from the URL and substitute it for something small and memorable. It certainly is, but it depends on something called global consensus, something which is more in the realm of blockchains and cryptocurrencies. Don't fear: a solution is in the works. However, big fat blobs of letters will have to do, for now.
+You might be wondering if it is possible to remove that last blob of letters from the URL and substitute it for something small and memorable. It certainly is. Blockchain-backed identities exist (Polygon, registered via `samizdat identity create`) and resolve to a series public key, but they cost gas to register and are entirely optional. Most projects just share the `_series/<base64-public-key>/` URL directly and call it a day.
+
+## What URL do I share?
+
+There are three URL shapes you might see when interacting with the SAMIZDAT
+network. They all start with `http://localhost:4510/` because they go through
+your local node:
+
+1. `http://localhost:4510/_series/<base64-public-key>/path/` -- the canonical
+   way to address content on a series. The public key is the whole identity;
+   no registration, no DNS, no gas. This is what `samizdat commit` shows you
+   after publishing and what you would typically share with friends.
+2. `http://localhost:4510/~<identity>/path/` -- only available for series that
+   have a registered identity on the Polygon-based identity contract. Same
+   content as the `_series/` URL above, but with a human-friendly name.
+3. `http://localhost:4510/_objects/<hash>` -- direct single-object addressing
+   by content hash. Useful when you want to link to a specific file
+   independently of any series.
 
 So, that's it! Happy surfing.
 

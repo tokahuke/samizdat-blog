@@ -20,8 +20,13 @@ If you support this work, consider donating using crypto, only crypto. If you wo
 
 | Currency | Address                                      |
 |----------|----------------------------------------------|
-| `ETH`    | `0xba89B660eB6f5D894830C9273a5Dfb8dDc170cff` |
+| `XMR`    | `86YcEFJSQXfZbPhjpDpabb5raQjVLWAfji3eMGebbj6QJnk1wXfgfqx9pgqURUWqMbjW7mNTC79guNEEsGPKJbRGKxEkrAN` |
 | `BTC`    | `bc1qseae89zr4z2lkl82nvvr6c9sl97agshapzeag5` |
+| `ETH`    | `0xba89B660eB6f5D894830C9273a5Dfb8dDc170cff` |
+
+Donations fund the testbed server (`testbed.hubfederation.com`) and the
+public proxy that lets non-node visitors see the site at all, plus development
+time and bounties for contributors who pick up issues from the project tracker.
 
 Your donations are greatly appreciated!
 

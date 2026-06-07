@@ -1,6 +1,13 @@
 baseURL = '~'
 languageCode = 'en-us'
 title = 'Samizdat: Your content, available'
+# Site is proxied under a variable identity prefix (`~samizdat/`, etc.)
+# at serve time, so absolute paths like `/hero-red-wedge.jpg` in
+# templates break when resolved by the browser against the proxy
+# origin. `relativeURLs = true` makes Hugo emit "../"-style paths at
+# build time, which always resolve against the current page's URL
+# regardless of the identity prefix in front of it.
+relativeURLs = true
 
 [Params]
   samizdatPublicKey = "fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc"
