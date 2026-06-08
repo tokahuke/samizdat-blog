@@ -131,7 +131,8 @@ three commands you will use over and over for the rest of the project:
   every time a file changes. This is the develop-test loop. Editions
   on the debug series are not announced to the rest of the network, so
   drafts do not leak out, but you can still open them in your browser
-  via the debug series' own `_series/<key>/` URL on `localhost:4510`.
+  at the debug series' own `<base32-key>.localhost:4510` subdomain;
+  the `samizdat commit` output prints the URL for you.
 * `samizdat commit` does the same thing as `watch` but one-shot: build
   once, publish one debug edition, exit. Useful in scripts and CI.
 * `samizdat commit --release` is the real publish. It builds, then

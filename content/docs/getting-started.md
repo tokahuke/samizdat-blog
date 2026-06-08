@@ -104,26 +104,46 @@ The page you are accessing now is probably being accessed using a series. If not
 
 <a class="samizdat-link">docs/getting-started</a>
 
-Note that the prefix now is `_series` instead of `_collections`. Now, the big blob of letters is a [public key](https://en.wikipedia.org/wiki/Public-key_cryptography) associated with the secret key used to sign new editions. This is (by now) the preferred way of retrieving content from the SAMIZDAT network and the one which will feel more familiar to most users.
+Note that the host part of the URL now encodes the series public key (as
+a `<base32-key>.localhost` subdomain). The big blob of letters is a
+[public key](https://en.wikipedia.org/wiki/Public-key_cryptography) associated
+with the secret key used to sign new editions. Each series lives at its own
+browser origin, so storage, cookies, and service workers are isolated per
+series automatically.
 
-You might be wondering if it is possible to remove that last blob of letters from the URL and substitute it for something small and memorable. It certainly is. Blockchain-backed identities exist (Polygon, registered via `samizdat identity create`) and resolve to a series public key, but they cost gas to register and are entirely optional. Most projects just share the `_series/<base64-public-key>/` URL directly and call it a day.
+You might be wondering if it is possible to replace that blob of letters
+with something small and memorable. It certainly is. Blockchain-backed
+identities exist (Polygon, registered via `samizdat identity create`),
+resolve to a series public key, and surface as `<identity>.localhost`
+subdomains. They cost gas to register and are entirely optional; most
+projects just share the public-key form.
 
 ## What URL do I share?
 
-There are three URL shapes you might see when interacting with the SAMIZDAT
-network. They all start with `http://localhost:4510/` because they go through
-your local node:
+There are several URL shapes you might see when interacting with the
+SAMIZDAT network:
 
-1. `http://localhost:4510/_series/<base64-public-key>/path/` -- the canonical
-   way to address content on a series. The public key is the whole identity;
-   no registration, no DNS, no gas. This is what `samizdat commit` shows you
-   after publishing and what you would typically share with friends.
-2. `http://localhost:4510/~<identity>/path/` -- only available for series that
-   have a registered identity on the Polygon-based identity contract. Same
-   content as the `_series/` URL above, but with a human-friendly name.
-3. `http://localhost:4510/_objects/<hash>` -- direct single-object addressing
-   by content hash. Useful when you want to link to a specific file
-   independently of any series.
+**Local (your own node):**
+
+1. `http://<base32-of-public-key>.localhost:4510/path/` -- the canonical
+   way to address a series locally. The public key is the whole identity;
+   no registration, no DNS, no gas. This is what `samizdat commit` shows
+   you after publishing.
+2. `http://<identity>.localhost:4510/path/` -- only available for series
+   that have a registered identity on the Polygon-based identity contract.
+   Same content as the public-key URL, with a human-friendly name.
+3. `http://localhost:4510/_objects/<hash>` -- direct single-object
+   addressing by content hash, served from the admin host. Useful when
+   you want to link to a specific file independently of any series.
+
+**For sharing with friends (public proxy):**
+
+1. `https://proxy.hubfederation.com/_series/<base64-public-key>/path/` --
+   the canonical sharing URL. The proxy translates the path-form into the
+   node's host-form upstream, so the same content is reachable both ways.
+2. `https://proxy.hubfederation.com/~<identity>/path/` -- same idea with
+   an identity handle. Both forms are unchanged on the proxy side; only
+   the node's local URL shape changed.
 
 So, that's it! Happy surfing.
 

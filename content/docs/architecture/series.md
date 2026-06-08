@@ -18,11 +18,11 @@ to convince everyone to update a link.
 ## Keypairs and series owners
 
 A series is an Ed25519 keypair. The **public key** is the network
-identity of the series; it is what consumers subscribe to and what
-appears in the canonical
-`http://localhost:4510/_series/<base64-public-key>/` URL. Anyone who
-can sign with the matching private key can publish new editions; that
-is the entire authentication story for the network layer.
+identity of the series; it is what consumers subscribe to and what the
+node hosts at `http://<base32-of-public-key>.localhost:4510/` (its own
+browser origin). Anyone who can sign with the matching private key can
+publish new editions; that is the entire authentication story for the
+network layer.
 
 Your own node keeps a node-local _nickname_ for each series it owns or
 subscribes to (the `nickname` field in `Samizdat.toml`, or whatever
@@ -67,7 +67,7 @@ There are two flavours:
 ## Edition item resolution and transfer
 
 When a consumer's browser hits
-`http://localhost:4510/_series/<key>/some/path/`, the local node:
+`http://<base32-key>.localhost:4510/some/path/`, the local node:
 
 1. Looks up the latest known edition for `<key>` it has cached, and
    optionally polls the hubs for a fresher one if the cached

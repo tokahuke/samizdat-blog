@@ -12,10 +12,14 @@ menu:
 
 # Directory structure
 
-Since when you are developing for SAMIZDAT, you are actually creating only a _section_ of a huge site and not a proper site, some rules of the "link game" change. For example, if you wanted to refer to a static global stylesheet in your site, you would simply put it in `/style.css` and call it a day. Not so with SAMIZDAT. After all, the route `/style.css` is invalid. You want `/_series/<your public key>/style.css`. How can we manage that?
+Since when you are developing for SAMIZDAT, you are actually creating only a _section_ of a huge site and not a proper site, some rules of the "link game" change. For example, if you wanted to refer to a static global stylesheet in your site, you would simply put it in `/style.css` and call it a day. With SAMIZDAT, `/style.css` resolves against your series' own subdomain (`<base32-of-public-key>.localhost:4510/style.css`), but you may still want a way to refer to "the series root" from a deep page without hardcoding the full subdomain.
 
 
 ## The `~` route
+
+<aside class="note">
+The <code>~</code> redirect described below was removed; absolute paths (<code>/style.css</code>) now resolve against the series' own subdomain root, which is what you usually want. This section is kept for reference while older content still uses the <code>~/...</code> form.
+</aside>
 
 Imagine that you are developing a blog post page in `/_series/<your public key>/blog/my-first-article` and you need to load our stylesheet in `/_series/<your public key>/style.css`. You _could_ hardcode the full link, but that can be troublesome to change. However, imagine that your user wants to access your content via a _collection_ instead. Each edition is a consistent whole, but accessing _that_ stylesheet from possibly another edition (a more recent one) can mix up things, with unpredictable results. We need a way to consistently reference "the root of the directory I am accessing".
 

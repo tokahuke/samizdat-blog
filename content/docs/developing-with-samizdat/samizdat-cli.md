@@ -92,13 +92,21 @@ and upload all files to your node. It will then create a collection matching
 the exact structure of the output folder and use this collection to create a
 fresh-new edition for the series.
 
-Once the commit lands, the content is reachable at:
+Once the commit lands, the content is reachable locally at:
 ```
-http://localhost:4510/_series/<base64-public-key>/path/
+http://<base32-of-public-key>.localhost:4510/path/
 ```
-where `<base64-public-key>` is what you see in `Samizdat.toml` (or via
-`samizdat series ls`). The same URL shape works for both debug and release
+where `<base32-of-public-key>` is the `host_label` column of
+`samizdat series ls` (a 52-char base32 rendering of the same key that
+`Samizdat.toml` stores in base64). `samizdat commit` prints the full URL
+in the post-commit row. The same shape works for both debug and release
 series; only the public key changes.
+
+To share with friends, use the public proxy form (the proxy translates
+the path-form back to the node's host-form upstream):
+```
+https://proxy.hubfederation.com/_series/<base64-public-key>/path/
+```
 
 When you are 110% sure that you want to push to the _release_ series (commits
 are irreversible!), just do
