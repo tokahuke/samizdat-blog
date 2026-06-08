@@ -15,7 +15,7 @@ SAMIZDAT allows you to create not only static pages, but also full-blown web app
 
 ## JavaScript context isolation
 
-Browsers are very good at keeping data belonging to different sites separate in your computer. SAMIZDAT serves each series and each identity at its own subdomain of `localhost` (`<base32-of-public-key>.localhost:4510` and `<identity>.localhost:4510`), so browsers treat each one as a separate site. This means cookies, `localStorage`, `sessionStorage`, `IndexedDB`, Cache Storage and service workers are scoped per series; a page on series A cannot read what series B wrote. You can use the regular browser storage APIs within your own series as you would on any website.
+Browsers are very good at keeping data belonging to different sites separate in your computer. SAMIZDAT serves each series and each identity at its own subdomain of `localhost` (`series-<base32-of-public-key>.localhost:4510` and `<identity>.localhost:4510`), so browsers treat each one as a separate site. This means cookies, `localStorage`, `sessionStorage`, `IndexedDB`, Cache Storage and service workers are scoped per series; a page on series A cannot read what series B wrote. You can use the regular browser storage APIs within your own series as you would on any website.
 
 
 ## SamizdatJS

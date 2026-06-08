@@ -94,18 +94,17 @@ fresh-new edition for the series.
 
 Once the commit lands, the content is reachable locally at:
 ```
-http://<base32-of-public-key>.localhost:4510/path/
+http://series-<base32-of-public-key>.localhost:4510/path/
 ```
-where `<base32-of-public-key>` is the `host_label` column of
-`samizdat series ls` (a 52-char base32 rendering of the same key that
-`Samizdat.toml` stores in base64). `samizdat commit` prints the full URL
-in the post-commit row. The same shape works for both debug and release
-series; only the public key changes.
+where `series-<base32-of-public-key>` is the `host_label` column of
+`samizdat series ls`. `samizdat commit` prints the full URL in the
+post-commit row. The same shape works for both debug and release series;
+only the public key changes.
 
-To share with friends, use the public proxy form (the proxy translates
-the path-form back to the node's host-form upstream):
+To share with friends, use the public proxy form (same typed-subdomain
+shape, on the proxy's domain):
 ```
-https://proxy.hubfederation.com/_series/<base64-public-key>/path/
+https://series-<base32-public-key>.proxy.hubfederation.com/path/
 ```
 
 When you are 110% sure that you want to push to the _release_ series (commits

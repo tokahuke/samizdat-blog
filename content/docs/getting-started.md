@@ -59,9 +59,9 @@ different from location addressing. In _content_ addressing, URLs point to the
 _content_ directly, regardless of location. For _each_ file in the network, a
 unique name is created that is based _solely_ on the content of the file. This
 is called a [_hash_](https://en.wikipedia.org/wiki/Hash_function). For example,
-this is a link to a picture whose hash is `-u3S2coR1vjKwLh6mJ8LOHMY3vnwgCrCsrmt_g`:
+a link to a picture whose hash is `<hash>` looks like:
 
-<a href="http://localhost:4510/_objects/-u3S2coR1vjKwLh6mJ8LOHMY3vnwgCrCsrmt_g">http://localhost:4510/_objects/-u3S2coR1vjKwLh6mJ8LOHMY3vnwgCrCsrmt_g</a>
+<a href="http://object-&lt;hash&gt;.localhost:4510/">http://object-&lt;hash&gt;.localhost:4510/</a>
 
 This name is _intrinsic_ to this picture and is guaranteed to be unique.
 
@@ -90,9 +90,9 @@ Even though _content addressing_ using hashes is great, it is impossible to have
 
 To solve this, SAMIZDAT has the concept of _collections_. Collections work just like folders in your computer: you can put your files into folders and subfolders so that your content is organized in trees. Incidentally, URL routes also work the same way. Collections work using these nice data structures called [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree). These trees allow us to verify that a given _hash_ corresponds to the right path inside a collection. After all, being duped in the Internet can have harsh consequences. As an added bonus, each collection is uniquely identified by a single hash, just like objects, _no matter the size_. Accessing a collection item from your browser is very similar to accessing an object. For example, that picture I showed you can also be accessed by the link
 
-<a href="http://localhost:4510/_collections/pKxHqTFD_Oezb3q7WKKJz6u2_NTwEdKSwAJH0w/example-object.png">http://localhost:4510/_collections/pKxHqTFD_Oezb3q7WKKJz6u2_NTwEdKSwAJH0w/example-object.png</a>
+<a href="http://collection-&lt;hash&gt;.localhost:4510/example-object.png">http://collection-&lt;hash&gt;.localhost:4510/example-object.png</a>
 
-Now, the picture has a name: `example-object.png`, inside collection `pKxHqTFD_Oezb3q7WKKJz6u2_NTwEdKSwAJH0w`.
+Now, the picture has a name: `example-object.png`, inside the collection identified by `<hash>`.
 
 However, you will rarely see links to collections because _collections are immutable!_ Once they are built, they cannot be changed, not even a single bit. If you change the bit, the whole collection becomes another collection, with a completely and unpredictably different hash. Therefore, SAMIZDAT has also the concept of _series_.
 
@@ -105,7 +105,7 @@ The page you are accessing now is probably being accessed using a series. If not
 <a class="samizdat-link">docs/getting-started</a>
 
 Note that the host part of the URL now encodes the series public key (as
-a `<base32-key>.localhost` subdomain). The big blob of letters is a
+a `series-<base32-key>.localhost` subdomain). The big blob of letters is a
 [public key](https://en.wikipedia.org/wiki/Public-key_cryptography) associated
 with the secret key used to sign new editions. Each series lives at its own
 browser origin, so storage, cookies, and service workers are isolated per
@@ -125,25 +125,24 @@ SAMIZDAT network:
 
 **Local (your own node):**
 
-1. `http://<base32-of-public-key>.localhost:4510/path/` -- the canonical
-   way to address a series locally. The public key is the whole identity;
-   no registration, no DNS, no gas. This is what `samizdat commit` shows
-   you after publishing.
+1. `http://series-<base32-of-public-key>.localhost:4510/path/` -- the
+   canonical way to address a series locally. The public key is the whole
+   identity; no registration, no DNS, no gas. This is what `samizdat
+   commit` shows you after publishing.
 2. `http://<identity>.localhost:4510/path/` -- only available for series
    that have a registered identity on the Polygon-based identity contract.
    Same content as the public-key URL, with a human-friendly name.
-3. `http://localhost:4510/_objects/<hash>` -- direct single-object
-   addressing by content hash, served from the admin host. Useful when
-   you want to link to a specific file independently of any series.
+3. `http://object-<hash>.localhost:4510/` -- direct single-object
+   addressing by content hash. Useful when you want to link to a specific
+   file independently of any series.
 
 **For sharing with friends (public proxy):**
 
-1. `https://proxy.hubfederation.com/_series/<base64-public-key>/path/` --
-   the canonical sharing URL. The proxy translates the path-form into the
-   node's host-form upstream, so the same content is reachable both ways.
-2. `https://proxy.hubfederation.com/~<identity>/path/` -- same idea with
-   an identity handle. Both forms are unchanged on the proxy side; only
-   the node's local URL shape changed.
+1. `https://series-<base32-public-key>.proxy.hubfederation.com/path/` --
+   the canonical sharing URL: the same typed-subdomain shape as the local
+   node, just on the proxy's domain.
+2. `https://<identity>.proxy.hubfederation.com/path/` -- same idea with
+   an identity handle.
 
 So, that's it! Happy surfing.
 

@@ -31,9 +31,9 @@ By default, each object chunk is sized at 256kB. However, chunks of arbitrary si
 
 Since objects are uniquely identified by their hash, you can request them directly by accessing the following URL:
 ```
-http://localhost:4510/_objects/{{ hash }}
+http://object-{{ hash }}.localhost:4510/
 ```
-Just substitute `{{ hash }}` by the relevant object hash. When you access this URL, the local SAMIZDAT node will look for it in its local database. If it is there, then hooray! You will receive that object in just a jiffy.
+Just substitute `{{ hash }}` by the relevant object hash (base32, lowercase, no padding). When you access this URL, the local SAMIZDAT node will look for it in its local database. If it is there, then hooray! You will receive that object in just a jiffy.
 
 However, if the object is not found, the node will have to query the hubs it is connected to, which will broadcast the request to _some_ selected nodes. Unfortunately, broadcasting which object you want to the whole network to hear is a very bad idea, especially if _someone_ thinks that the object's contents are _naughty_ and might give you a knock on your door. The sad reality is that object hashes, even if they _look_ like complete gibberish, are very easily to be indexed _en masse_ into a big fat database of very naughty things. To foil this _someone's_ devious plans, we need to be slightly smarter.
 

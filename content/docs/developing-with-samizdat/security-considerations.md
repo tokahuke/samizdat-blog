@@ -27,7 +27,7 @@ Even though, only those who have access to a certain SAMIZDAT link are able to a
 
 ## Outbound `Referer` is stripped
 
-The node ships a default `Referrer-Policy: same-origin` header. Same-origin requests (inside your series subdomain, or to admin endpoints on the bare loopback host) still carry a `Referer`; cross-origin requests (a link from your page to anywhere on the open Web) carry no `Referer` at all. This keeps third-party sites from logging "user came from `<base32-key>.localhost:4510/some/path`" and learning the user is a SAMIZDAT user on that series.
+The node ships a default `Referrer-Policy: same-origin` header. Same-origin requests (inside your series subdomain, or to admin endpoints on the bare loopback host) still carry a `Referer`; cross-origin requests (a link from your page to anywhere on the open Web) carry no `Referer` at all. This keeps third-party sites from logging "user came from `series-<base32-key>.localhost:4510/some/path`" and learning the user is a SAMIZDAT user on that series.
 
 If your page genuinely needs to send a `Referer` to an external destination (analytics opt-in, a partner site that requires it, etc.), override per-document or per-element. Both are standard HTML; nothing samizdat-specific.
 
