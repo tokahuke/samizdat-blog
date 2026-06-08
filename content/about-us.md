@@ -8,7 +8,7 @@ type: bare
 
 SAMIZDAT is a free software initiative from me, [a guy you just met on the Internet](https://github.com/tokahuke) and some more helpful folks you have not met yet, but are as important. I am of course talking about the contributors to the project. Do you want to join the cause? Anyone is welcome, as long as you keep the conversation civil. Go to the [project page on GitHub](https://github.com/tokahuke/samizdat) and have a look around. There is plenty to be done!
 
-No idea how to code? No problem! You can also [donate some crypto](/donate/) to be used in the project. We run a public testbed at `testbed.hubfederation.com` (the seed hub that every fresh install connects to by default) and a web proxy at `proxy.hubfederation.com` (so people without a node can still view Samizdat-published sites). Those boxes are not free, and with your support we can also lure developers to work for the project with the sweet scent of cash.
+No idea how to code? No problem! You can also [donate some crypto](/donate/) to be used in the project. We run a public testbed at `testbed.hubfederation.com` (the seed hub that every fresh install connects to by default) and a web proxy at `hubfederation.com` (so people without a node can still view Samizdat-published sites). Those boxes are not free, and with your support we can also lure developers to work for the project with the sweet scent of cash.
 
 ## Why does Samizdat exist?
 

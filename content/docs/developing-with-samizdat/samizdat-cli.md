@@ -104,7 +104,7 @@ only the public key changes.
 To share with friends, use the public proxy form (same typed-subdomain
 shape, on the proxy's domain):
 ```
-https://series-<base32-public-key>.proxy.hubfederation.com/path/
+https://series-<base32-public-key>.hubfederation.com/path/
 ```
 
 When you are 110% sure that you want to push to the _release_ series (commits

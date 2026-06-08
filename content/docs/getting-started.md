@@ -29,7 +29,7 @@ in this computer" (since it is where Samizdat node is running, after all) and
 Let's try it then! In case you didn't notice, this very page is hosted in the 
 Samizdat Network. If you can access it without installing Samizdat Node,
 chances are that you are accessing it via an _external_ proxy, such as 
-[https://proxy.hubfederation.com](https://proxy.hubfederation.com). This is not
+[https://hubfederation.com](https://hubfederation.com). This is not
 the _fun_ way to use Samizdat (and it _can_ be a vulnerability). If you have
 Samizdat Node installed, you can access this very same page by going to this
 page:
@@ -138,10 +138,10 @@ SAMIZDAT network:
 
 **For sharing with friends (public proxy):**
 
-1. `https://series-<base32-public-key>.proxy.hubfederation.com/path/` --
+1. `https://series-<base32-public-key>.hubfederation.com/path/` --
    the canonical sharing URL: the same typed-subdomain shape as the local
    node, just on the proxy's domain.
-2. `https://<identity>.proxy.hubfederation.com/path/` -- same idea with
+2. `https://<identity>.hubfederation.com/path/` -- same idea with
    an identity handle.
 
 So, that's it! Happy surfing.
