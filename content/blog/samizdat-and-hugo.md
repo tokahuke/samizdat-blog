@@ -71,14 +71,14 @@ git clone https://github.com/athul/archie.git
 
 Then, we need to configure Hugo's `config.toml`. Just substitute whatever is there with this:
 ```toml
-baseURL = '~'
+baseURL = '/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = "archie"
 ```
 
 <aside class="note">
-The <code>baseURL</code> property for a Samizdat site should always be <code>~</code>. For more information on what that means, see <a href="~/docs/developing-with-samizdat/directory-structure/">here</a>.
+Your series lives at its own subdomain (e.g. <code>series-&lt;base32-key&gt;.localhost:4510</code>), so absolute paths like <code>/style.css</code> resolve against the series root just like on any regular website. See <a href="/docs/developing-with-samizdat/directory-structure/">the directory-structure page</a> for the details.
 </aside>
 
 Now, we are ready to _actually_ add some content. In hugo, content goes into the `content` folder. Let's create a blog post, then! Copy the following (rather terse) blog to `content/posts/my-post.md`:

@@ -20,6 +20,6 @@ Each series lives at its own subdomain of `localhost`, so the rules of the "link
 This is something that is also related to directory structure, which is worth mentioning. The SAMIZDAT CLI does not mount collections as an _exact_ copy of the build directory. Here is what is meddled with:
 
 1. A folder `foo/bar` containing a file `index.html` will also have a path `foo/bar` with the same content as `index.html`. This is standard in many web servers and helps to create shorter, more memorable URLs.
-2. A _sitemap_ file called `~/_inventory` is added to the collection. This is a JSON file containing all paths in the collection, associated to their respective object hashes.
+2. A _sitemap_ file called `_inventory` is added to the collection root. This is a JSON file containing all paths in the collection, associated to their respective object hashes.
 
 Please be aware of these transformations when developing your series. 

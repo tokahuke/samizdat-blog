@@ -48,11 +48,11 @@ In the next sections, we will discuss the public API, the private API as well as
 The other thing an unauthenticated client can do is to fetch documents from the SAMIZDAT network. Below are some examples of how to fetch data using the SAMIZDAT client:
 ```typescript
 // Fetching by object hash:
-const anObject: Blob = await sz.getObject("W9SwR5fPfPNRP684PUPPBtWCZsr6djnOUWPgOg");
+const anObject: Blob = await sz.getObject("l5sb4r4xz5z5gucp5pi6hdyputjeazfu7lvgnetwhxqdq");
 // Fetching by collection and item:
-const anItem: Blob = await sz.getItem("BV8VnECw7OEeS6g5JtQtbFeMqnd6WuhT66pXqg", "/foo.html");
+const anItem: Blob = await sz.getItem("aw7vlqcsdy4ojb24g5cm2nbm2xmstd25w265ze4wxnsk6", "/foo.html");
 // Fetching by series and item:
-const aSeriesItem: Blob = await sz.getSeriesItem("fGfgc7ibvwy26U7nHjcaAhYmyLvXl84Ld-qab_0PPJc", "/samizdat.js");
+const aSeriesItem: Blob = await sz.getSeriesItem("prt6a45yto7qznxjj3tr4ny2ailcnsf326l44c3x5kng77iphslq", "/samizdat.js");
 // Fetching by collection and item:
 const anIdentityItem: Blob = await sz.getIdentityItem("samizdat", "/samizdat.js");
 ```
@@ -99,13 +99,13 @@ const hash: string = await sz.postObject(myObject);
 ```
 Similarly, you can delete an object by its hash (if it exists):
 ```typescript
-await sz.deleteObject("W9SwR5fPfPNRP684PUPPBtWCZsr6djnOUWPgOg");
+await sz.deleteObject("l5sb4r4xz5z5gucp5pi6hdyputjeazfu7lvgnetwhxqdq");
 ``` 
 However, note that deleting an object does not necessarily purge the object from the network (SAMIZDAT was created to be resilient to _exactly that_). If somebody else somewhere still has the object, a simple call to `sz.getObject(hash)`, which is a public API call, will probably restore a local copy.
 
 Objects also have a second access right, which is `GetObjectStats`. This access right allows the web application to get information on object usage statistics, among other things:
 ```typescript
-const foo: object = await sz.getObjectStats("W9SwR5fPfPNRP684PUPPBtWCZsr6djnOUWPgOg");
+const foo: object = await sz.getObjectStats("l5sb4r4xz5z5gucp5pi6hdyputjeazfu7lvgnetwhxqdq");
 ```
 
 
@@ -115,9 +115,9 @@ Just like with objects, collections can be created with the `ManageCollections` 
 ```typescript
 const hash: string = await sz.postCollection(
     [
-        ["/foo.html", "W9SwR5fPfPNRP684PUPPBtWCZsr6djnOUWPgOg"],
-        ["/bar.html", "WmpwXiBTrTPtDhtnmeRBqncXDGqwNzGzMfwSqA"],
-        ["/baz/qux", "DVolSn8I4YdrAKfDb4gQcoflFp22__yuoX1hIg"],
+        ["/foo.html", "l5sb4r4xz5z5gucp5pi6hdyputjeazfu7lvgnetwhxqdq"],
+        ["/bar.html", "lzu3boqte24t3oqolg4zsruvybw5ofu5q3ifvgcm7csa"],
+        ["/baz/qux", "blu5jj7yrymgnoab47bw7caqou7jolu23p3p4ldifvyc"],
     ],
 )
 ```

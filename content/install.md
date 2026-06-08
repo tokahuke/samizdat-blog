@@ -25,7 +25,7 @@ Samizdat Node lets you view and publish content on the Samizdat network. Runs on
 
 <div class="tab-panel" id="install-node-linux" role="tabpanel" aria-labelledby="btn-linux" tabindex="0">
 <p>Two commands. The first one drops the <code>samizdat-up</code> installer on your machine. The second one tells it to set up the node service.</p>
-<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre class="template-origin"><code>curl -fsSL ${origin}/~get-samizdat/latest/install.sh | sudo bash
+<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre><code>curl -fsSL https://series-v5bknud2nujn5bmgrmtmxovrncwhedw4a6jtrnhz4yn3ovm2wxjq.hubfederation.com/latest/install.sh | sudo bash
 sudo samizdat-up install node</code></pre></div>
 <h3>Did it work?</h3>
 <p>Open <a href="http://localhost:4510"><code>http://localhost:4510</code></a> in your browser. The Samizdat home should load. If it does not, see below.</p>
@@ -42,7 +42,7 @@ sudo samizdat-up install node</code></pre></div>
 
 <div class="tab-panel" id="install-node-macos" role="tabpanel" aria-labelledby="btn-macos" tabindex="0">
 <p>On macOS the installer (<code>samizdat-up</code>) ships via Homebrew. After installing it, point it at the node service.</p>
-<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre class="template-origin"><code>brew tap tokahuke/samizdat
+<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre><code>brew tap tokahuke/samizdat
 brew install samizdat
 sudo samizdat-up install node</code></pre></div>
 <h3>Did it work?</h3>
@@ -60,8 +60,8 @@ sudo samizdat-up install node</code></pre></div>
 
 <div class="tab-panel" id="install-node-windows" role="tabpanel" aria-labelledby="btn-windows" tabindex="0">
 <p>Download <code>samizdat-up.exe</code>, save it in your <code>PATH</code>, then run it from an <strong>elevated</strong> PowerShell prompt:</p>
-<p><a href="${origin}/~get-samizdat/latest/x86_64-pc-windows-gnu/samizdat-up/samizdat-up.exe" class="btn-arrow has-origin">Download samizdat-up.exe</a></p>
-<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre class="template-origin"><code>samizdat-up.exe install node</code></pre></div>
+<p><a href="https://series-v5bknud2nujn5bmgrmtmxovrncwhedw4a6jtrnhz4yn3ovm2wxjq.hubfederation.com/latest/x86_64-pc-windows-gnu/samizdat-up/samizdat-up.exe" class="btn-arrow">Download samizdat-up.exe</a></p>
+<div class="pre-container"><button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button><pre><code>samizdat-up.exe install node</code></pre></div>
 <aside class="note">Windows Defender will flag this with "Windows protected your PC". That is because we have not paid Microsoft to code-sign the binary. (Yes, that is a thing. Yes, it costs money.) Click "More info", then "Run anyway".</aside>
 <h3>Did it work?</h3>
 <p>Open <a href="http://localhost:4510"><code>http://localhost:4510</code></a> in your browser. The Samizdat home should load. If it does not, <code>sc.exe query SamizdatNode</code> shows whether the service is up.</p>
@@ -97,7 +97,7 @@ If you have checked all the boxes, install (as root):
 
 <div class="pre-container">
   <button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button>
-  <pre class="template-origin"><code>curl -fsSL ${origin}/~get-samizdat/latest/install.sh | sudo bash
+  <pre><code>curl -fsSL https://series-v5bknud2nujn5bmgrmtmxovrncwhedw4a6jtrnhz4yn3ovm2wxjq.hubfederation.com/latest/install.sh | sudo bash
 sudo samizdat-up install hub</code></pre>
 </div>
 
@@ -125,7 +125,7 @@ If you have all of that, install (as root):
 
 <div class="pre-container">
   <button type="button" class="pre-overlay copy-btn" aria-label="Copy to clipboard">copy</button>
-  <pre class="template-origin"><code>curl -fsSL ${origin}/~get-samizdat/latest/install.sh | sudo bash
+  <pre><code>curl -fsSL https://series-v5bknud2nujn5bmgrmtmxovrncwhedw4a6jtrnhz4yn3ovm2wxjq.hubfederation.com/latest/install.sh | sudo bash
 sudo samizdat-up install proxy</code></pre>
 </div>
 
