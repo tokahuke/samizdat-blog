@@ -31,7 +31,7 @@
     {{ $css := resources.Get "css/main.css" | css.TailwindCSS (dict "minify" true) | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
 
-    <script src="~/samizdat.js" defer></script>
+    <script src="/samizdat.js" defer></script>
 
     {{ block "head" . }}{{ end }}
   </head>
