@@ -17,8 +17,6 @@ SAMIZDAT allows you to create not only static pages, but also full-blown web app
 
 Browsers are very good at keeping data belonging to different sites separate in your computer. SAMIZDAT serves each series and each identity at its own subdomain of `localhost` (`<base32-of-public-key>.localhost:4510` and `<identity>.localhost:4510`), so browsers treat each one as a separate site. This means cookies, `localStorage`, `sessionStorage`, `IndexedDB`, Cache Storage and service workers are scoped per series; a page on series A cannot read what series B wrote. You can use the regular browser storage APIs within your own series as you would on any website.
 
-SAMIZDAT also offers its own KVStore API, available on all pages and working much like `localStorage` (except its API is `async`). KVStore is useful when you want server-side persistence (per-series, in the node's database) rather than per-browser persistence. See the [KVStore](#kvstore) section below for a primer on this API.
-
 
 ## SamizdatJS
 
@@ -44,31 +42,6 @@ In the next sections, we will discuss the public API, the private API as well as
 </aside>
 
 ## Public APIs
-
-### KVStore
-
-KVStore is a node-managed key-value store, partitioned per entity. It is useful when you want persistence that lives in the node (so a user visiting the same series from a different browser sees the same data) rather than per-browser persistence like `localStorage`. The API is `async` but otherwise familiar. Once you have instantiated a SamizdatJS client, you can start using this storage right away:
-```js
-const sz = new Samizdat();
-
-// Insert a key:
-await sz.kvstore.put("foo", "bar");
-// Read a key:
-const foo = await sz.kvstore.get("foo");
-// Clear a key:
-await sz.kvstore.delete("foo");
-// Clear the whole storage:
-await sz.kvstore.clear();
-``` 
-In the case of `put`, `delete` and `clear`, the `await` may be dropped in order to let the operation happen in the background. However, note that the storage will work as _eventually consistent_ in this case.
-
-The advantage of KVStore, as noted before, is that it is controlled by the node and partitioned per entity. So, for example,
-```js
-// If in page http://<base32-A>.localhost:4510/foo.html one does ...
-sz.kvstore.put("foo", "bar");
-// ... in page http://<base32-B>.localhost:4510/foo.html one still gets:
-const equalsNull = await sz.kvstore.get("foo"); // null!
-```
 
 ### Fetching data
 
